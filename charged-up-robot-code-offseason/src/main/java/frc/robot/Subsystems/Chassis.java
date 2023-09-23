@@ -31,16 +31,17 @@ public class Chassis extends SubsystemBase {
         }
         return m_chassis;
     }
-    public void SetChassis(double rightMotorSpeed, double leftMotorSpeed){
-        this.rightMotors.set(rightMotorSpeed);
-        this.leftMotors.set(leftMotorSpeed);
-    }
+
     public void driveTank(double lSpeed, double rSpeed){
         rightMotors.set(rSpeed);
         leftMotors.set(lSpeed);
     }
+    
     public void stop(){
         driveTank(0.0, 0.0);
+    }
+    public double getChassisMeters(){
+        return (rightForward.getEncoder().getPosition() * Consts.ChassisConsts.DISTANCE_PER_ROTATION * Consts.ChassisConsts.CHASSIS_WHEAL_GEAR_RATIO);
     }
 
 }
