@@ -13,6 +13,7 @@ public class Consts {
         public static final int CHASSIS_WHEAL_GEAR_RATIO = 0;
 
         public static final double DRIVE_METERS_THRESHOLD = 0.1;
+        public static final double TURN_ANGLE_THRESHOLD = 2;
     }
     
 }
