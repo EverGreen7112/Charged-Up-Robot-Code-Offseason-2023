@@ -22,10 +22,12 @@ public class Consts {
         public static final double FIRST_ARM_KP = 0;
         public static final double FIRST_ARM_KI = 0;
         public static final double FIRST_ARM_KD = 0;
+        public static final double FIRST_ARM_KF = 0;
 
         public static final double SECOND_ARM_KP = 0;
         public static final double SECOND_ARM_KI = 0;
         public static final double SECOND_ARM_KD = 0;
+        public static final double SECOND_ARM_KF = 0;
     }
 
 }
