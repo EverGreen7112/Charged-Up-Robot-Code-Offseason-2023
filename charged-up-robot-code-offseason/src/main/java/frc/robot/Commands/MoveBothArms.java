@@ -3,6 +3,7 @@ package frc.robot.Commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Subsystems.Arm;
 import frc.robot.Utils.Consts;
+import frc.robot.Utils.MathExtras;
 
 public class MoveBothArms extends CommandBase{
     
@@ -15,12 +16,16 @@ public class MoveBothArms extends CommandBase{
 
     @Override
     public void initialize() {
-        Arm.getInstance().turnFirstTo(m_firstTargetAngle);
+        //angle range
+        double firstTargetAngle = MathExtras.clamp(m_firstTargetAngle, Consts.ArmConsts.MIN_FIRST_ANGLE_RANGE, Consts.ArmConsts.MAX_FIRST_ANGLE_RANGE);
+        Arm.getInstance().turnFirstTo(firstTargetAngle);
     }
 
     @Override
     public void execute() {
-        if(Math.abs(m_firstTargetAngle - Arm.getInstance().getFirstAngle()) < Consts.ArmConsts.SECOND_ARM_OPEN_ANGLE_THRESHOLD){
+        //angle range
+        double firstTargetAngle = MathExtras.clamp(m_firstTargetAngle, Consts.ArmConsts.MIN_FIRST_ANGLE_RANGE, Consts.ArmConsts.MAX_FIRST_ANGLE_RANGE);
+        if(Math.abs(firstTargetAngle - Arm.getInstance().getFirstAngle()) < Consts.ArmConsts.SECOND_ARM_OPEN_ANGLE_THRESHOLD){
             Arm.getInstance().turnSecondTo(m_secondTargetAngle);
         }
         else{

@@ -25,13 +25,13 @@ public class MoveArmToAngle extends CommandBase{
         super.initialize();
 
         //angle range
-        double targetAngle = MathExtras.clamp(m_targetAngle, Consts.ArmConsts.MIN_ANGLE_RANGE, Consts.ArmConsts.MAX_ANGLE_RANGE);
+        double targetAngle = MathExtras.clamp(m_targetAngle, Consts.ArmConsts.MIN_FIRST_ANGLE_RANGE, Consts.ArmConsts.MAX_FIRST_ANGLE_RANGE);
 
         if(m_armNumber == ArmNumber.FIRST_ARM){
             Arm.getInstance().turnFirstTo(targetAngle);
         }
         else if(m_armNumber == ArmNumber.SECOND_ARM){
-            Arm.getInstance().turnSecondTo(targetAngle);
+            Arm.getInstance().turnSecondTo(m_targetAngle);
         }
     }
 
