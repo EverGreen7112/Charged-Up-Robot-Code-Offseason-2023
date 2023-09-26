@@ -21,6 +21,7 @@ public class Consts {
         public static final int CLOSE_TO_CONE_SENSOR_CHANNEL = 0;
 
         public static final double CLAW_POWER = 0;
+        public static final double ROLLERS_POWER = 0;
     }
 
 }

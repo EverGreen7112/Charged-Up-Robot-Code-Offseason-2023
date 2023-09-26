@@ -48,6 +48,18 @@ public class Claw extends SubsystemBase {
         m_clawMotor.set(ControlMode.PercentOutput, 0);
     }
 
+    public void rollInside() {
+        m_clawRollers.set(Consts.ClawConsts.ROLLERS_POWER);
+    }
+
+    public void rollOutside() {
+        m_clawRollers.set(-Consts.ClawConsts.ROLLERS_POWER);
+    }
+
+    public void stopRollers() {
+        m_clawRollers.set(0);
+    }
+
     public static Boolean getlimitSwitchOpenBool() {
         return m_limitSwitchOpen.get();
     }
