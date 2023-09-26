@@ -33,7 +33,9 @@ public class driveMeter extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return Math.abs((Chassis.getInstance().getChassisMeters() - m_startingMeters)- m_targetMeters) < Consts.ChassisConsts.DRIVE_METERS_THRESHOLD;
+        double metersDriven = Math.abs(Chassis.getInstance().getChassisMeters() - m_startingMeters);
+        return (metersDriven - m_targetMeters) < Consts.ChassisConsts.DRIVE_METERS_THRESHOLD;
+        // if reached within 10 cm of target stop
     }
 
     @Override
