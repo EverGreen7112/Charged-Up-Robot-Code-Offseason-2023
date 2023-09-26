@@ -19,6 +19,9 @@ public class Consts {
         public static final double FIRST_ARM_GEAR_RATIO =  0; // 1 / number
         public static final int SECOND_ARM_GEAR_RATIO = 0;// 1 / number
 
+        public static final double MIN_ANGLE_RANGE = -170;
+        public static final double MAX_ANGLE_RANGE = 170;
+
         public static final double FIRST_ARM_KP = 0;
         public static final double FIRST_ARM_KI = 0;
         public static final double FIRST_ARM_KD = 0;

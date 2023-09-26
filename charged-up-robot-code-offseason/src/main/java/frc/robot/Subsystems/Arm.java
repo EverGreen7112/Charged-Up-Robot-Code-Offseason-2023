@@ -2,6 +2,8 @@ package frc.robot.Subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.ControlType;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Utils.Consts;
 
@@ -11,10 +13,11 @@ public class Arm extends SubsystemBase{
     private static Arm m_instance;
 
     public Arm(){
-        m_firstArmMotor = new CANSparkMax(0, null);
-        m_secondArmMotor = new CANSparkMax(0, null);
+        
+        m_firstArmMotor = new CANSparkMax(Consts.ArmConsts.FIRST_ARM_ID, MotorType.kBrushless);
+        m_secondArmMotor = new CANSparkMax(Consts.ArmConsts.SECOND_ARM_ID, MotorType.kBrushless);
 
-        //config pid values of motor controllers
+        // config pid values of motor controllers
         m_firstArmMotor.getPIDController().setP(Consts.ArmConsts.FIRST_ARM_KP);
         m_firstArmMotor.getPIDController().setI(Consts.ArmConsts.FIRST_ARM_KI);
         m_firstArmMotor.getPIDController().setD(Consts.ArmConsts.FIRST_ARM_KD);
