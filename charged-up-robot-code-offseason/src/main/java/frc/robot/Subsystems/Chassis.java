@@ -7,6 +7,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Utils.Consts;
+import frc.robot.Utils.MathUtils;
 
 public class Chassis extends SubsystemBase {
     private CANSparkMax m_rightForward, m_rightMid, m_rightBack, m_leftForward, m_leftMid, m_leftBack;
@@ -15,7 +16,6 @@ public class Chassis extends SubsystemBase {
     private static Chassis m_chassis;
 
     public Chassis() {
-        
 
         m_rightForward = new CANSparkMax(Consts.ChassisConsts.LEFT_FORWARD_ID, MotorType.kBrushless);
         m_rightMid = new CANSparkMax(Consts.ChassisConsts.LEFT_MID_ID, MotorType.kBrushless);
@@ -45,10 +45,25 @@ public class Chassis extends SubsystemBase {
         driveTank(0.0, 0.0);
     }
 
-    public double getChassisMeters() {
-        return (m_rightForward.getEncoder().getPosition() * Consts.ChassisConsts.DISTANCE_PER_ROTATION * Consts.ChassisConsts.CHASSIS_WHEAL_GEAR_RATIO);
+    public double getRightChassisMeters() {
+        return (m_rightForward.getEncoder().getPosition() * Consts.ChassisConsts.DISTANCE_PER_ROTATION
+                * Consts.ChassisConsts.CHASSIS_WHEAL_GEAR_RATIO);
     }
-    public double getChassisAngle(){
+
+    public double getLeftChassisMeters() {
+        return (m_leftForward.getEncoder().getPosition() * Consts.ChassisConsts.DISTANCE_PER_ROTATION
+                * Consts.ChassisConsts.CHASSIS_WHEAL_GEAR_RATIO);
+    }
+
+    public double getChassisAngle() {
+        return MathUtils.trueModulu(m_navX.getAngle(), 360);
+    }
+
+    public double getRawChassisAngle() {
         return m_navX.getAngle();
     }
+    public AHRS getNavX(){
+        return m_navX;
+    }
+
 }

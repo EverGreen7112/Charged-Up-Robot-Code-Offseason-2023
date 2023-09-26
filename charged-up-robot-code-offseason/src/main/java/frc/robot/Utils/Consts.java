@@ -18,6 +18,12 @@ public class Consts {
         public static final double TURN_KP = 0;
         public static final double TURN_KD = 0;
 
+        public static final double MOVE_KP = 0;
+        public static final double MOVE_KD = 0;
+
+        public static final double PITCH_ANGLE_THRESHOLD = 2;
+
+
     }
     
 }

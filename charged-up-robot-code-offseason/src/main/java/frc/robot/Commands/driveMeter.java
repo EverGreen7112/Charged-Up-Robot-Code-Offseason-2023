@@ -7,34 +7,52 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Subsystems.Chassis;
 import frc.robot.Utils.Consts;
 
-public class driveMeter extends CommandBase {
-    private double m_startingMeters;
-    private double m_targetMeters;
+public class driveMeter extends CommandBase { // CR_NOTE: driveMeter is not a meaningful name
+    private double m_targetRightMeters;
+    private double m_targetLeftMeters;
+
+    private double m_lastTraveldRightMeters = Chassis.getInstance().getRightChassisMeters();
+    private double m_lastTraveldLeftMeters = Chassis.getInstance().getLeftChassisMeters();
 
     public driveMeter(double targetMeters) {
-        addRequirements(Chassis.getInstance());
-        m_targetMeters = targetMeters;
+        // CR_NOTE: use PID for both left and right sides independantely
+        m_targetRightMeters = targetMeters + Chassis.getInstance().getRightChassisMeters();
+        m_targetLeftMeters = targetMeters + Chassis.getInstance().getLeftChassisMeters();
+
     }
 
     @Override
     public void initialize() {
-        m_startingMeters = Chassis.getInstance().getChassisMeters();
+        addRequirements(Chassis.getInstance());
+
     }
 
     @Override
     public void execute() {
-        double lastMeter = Chassis.getInstance().getChassisMeters();
-        double P = m_targetMeters - (Chassis.getInstance().getChassisMeters());
-        double D = (Chassis.getInstance().getChassisMeters()) - lastMeter;
-        double PIDOutput = (P * Consts.ChassisConsts.TURN_KP) - (D * Consts.ChassisConsts.TURN_KD);
+        double currentRightMeters = Chassis.getInstance().getRightChassisMeters();
+        double currentLeftMeters = Chassis.getInstance().getLeftChassisMeters();
 
-        Chassis.getInstance().driveTank(PIDOutput, PIDOutput);
+        double rP = m_targetRightMeters - currentRightMeters;
+        double lP = m_targetLeftMeters - currentLeftMeters;
+
+        double rD = currentRightMeters - m_lastTraveldRightMeters;
+        double lD = currentLeftMeters - m_lastTraveldLeftMeters;
+
+        double rightPIDOutput = (rP * Consts.ChassisConsts.MOVE_KP) - (rD * Consts.ChassisConsts.MOVE_KD);
+        double leftPIDOutput = (lP * Consts.ChassisConsts.MOVE_KP) - (lD * Consts.ChassisConsts.MOVE_KD);
+
+        Chassis.getInstance().driveTank(leftPIDOutput, rightPIDOutput);
+
+        m_lastTraveldRightMeters = currentRightMeters;
+        m_lastTraveldLeftMeters = currentLeftMeters;
     }
 
     @Override
     public boolean isFinished() {
-        double metersDriven = Math.abs(Chassis.getInstance().getChassisMeters() - m_startingMeters);
-        return (metersDriven - m_targetMeters) < Consts.ChassisConsts.DRIVE_METERS_THRESHOLD;
+        return (Math.abs(m_targetRightMeters
+                - Chassis.getInstance().getRightChassisMeters()) < Consts.ChassisConsts.DRIVE_METERS_THRESHOLD)
+                && (Math.abs(m_targetLeftMeters
+                        - Chassis.getInstance().getLeftChassisMeters()) < Consts.ChassisConsts.DRIVE_METERS_THRESHOLD);
         // if reached within 10 cm of target stop
     }
 

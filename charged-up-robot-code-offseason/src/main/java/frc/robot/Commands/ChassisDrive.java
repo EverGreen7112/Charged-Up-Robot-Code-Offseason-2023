@@ -5,23 +5,24 @@ import java.util.function.Supplier;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class ChassisDrive extends CommandBase {
-  private Supplier<Double> rightMotorSpeed;
-  private Supplier<Double> leftMotorSpeed;
+  private Supplier<Double> m_rightMotorSpeed;
+  private Supplier<Double> m_leftMotorSpeed;
 
   public ChassisDrive(Supplier<Double> leftMotorSpeed, Supplier<Double> rightMotorSpeed) {
-    this.rightMotorSpeed = rightMotorSpeed;
-    this.leftMotorSpeed = leftMotorSpeed;
-    addRequirements(Chassis.getInstance());
+    this.m_rightMotorSpeed = rightMotorSpeed;
+    this.m_leftMotorSpeed = leftMotorSpeed;
     // getting supplier
   }
 
   @Override
   public void initialize() {
+    addRequirements(Chassis.getInstance());
+
   }
 
   @Override
   public void execute() {
-    Chassis.getInstance().driveTank(leftMotorSpeed.get(), rightMotorSpeed.get());
+    Chassis.getInstance().driveTank(m_leftMotorSpeed.get(), m_rightMotorSpeed.get());
   }
 
   @Override
