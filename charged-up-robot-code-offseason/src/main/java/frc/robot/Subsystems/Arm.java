@@ -12,6 +12,11 @@ public class Arm extends SubsystemBase{
     private CANSparkMax m_firstArmMotor, m_secondArmMotor;
     private static Arm m_instance;
 
+    public static enum ArmNumber{
+        FIRST_ARM,
+        SECOND_ARM
+    }
+
     public Arm(){
         
         m_firstArmMotor = new CANSparkMax(Consts.ArmConsts.FIRST_ARM_ID, MotorType.kBrushless);
