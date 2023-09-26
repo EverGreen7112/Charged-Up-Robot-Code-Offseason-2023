@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Subsystems.Arm;
 import frc.robot.Subsystems.Arm.ArmNumber;
 import frc.robot.Utils.Consts;
-import frc.robot.Utils.MathExtras;
+import frc.robot.Utils.MathUtils;
 
 public class MoveArmToAngle extends CommandBase{
     
@@ -22,15 +22,15 @@ public class MoveArmToAngle extends CommandBase{
 
     @Override
     public void initialize() {
-        super.initialize();
-
-        //angle range
-        double targetAngle = MathExtras.clamp(m_targetAngle, Consts.ArmConsts.MIN_FIRST_ANGLE_RANGE, Consts.ArmConsts.MAX_FIRST_ANGLE_RANGE);
+        addRequirements(Arm.getInstance());
 
         if(m_armNumber == ArmNumber.FIRST_ARM){
-            Arm.getInstance().turnFirstTo(targetAngle);
+            //angle range
+            m_targetAngle = MathUtils.clamp(m_targetAngle, Consts.ArmConsts.MIN_FIRST_ANGLE_RANGE, Consts.ArmConsts.MAX_FIRST_ANGLE_RANGE);
+            Arm.getInstance().turnFirstTo(m_targetAngle);
         }
         else if(m_armNumber == ArmNumber.SECOND_ARM){
+            //second arm does not have a physical range
             Arm.getInstance().turnSecondTo(m_targetAngle);
         }
     }

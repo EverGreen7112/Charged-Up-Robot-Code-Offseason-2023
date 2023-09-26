@@ -1,6 +1,6 @@
 package frc.robot.Utils;
 
-public class MathExtras {
+public class MathUtils {
     
 
     /**

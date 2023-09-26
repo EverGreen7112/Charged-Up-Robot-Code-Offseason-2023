@@ -22,12 +22,15 @@ public class Consts {
         public static final double MAX_FIRST_ANGLE_RANGE = 170; //max angle the first arm can move to
         public static final double MIN_FIRST_ANGLE_RANGE = -170; //min angle the first arm can move to
 
-        public static final double FIRST_ARM_KP = 0.1;
-        public static final double FIRST_ARM_KI = 0;
-        public static final double FIRST_ARM_KD = 0;
-        public static final double FIRST_ARM_KF = 0;
+        public static final double MAX_SECOND_ANGLE_RANGE = 180; //max angle the second arm can move to
+        public static final double MIN_SECOND_ANGLE_RANGE = -180; //min angle the second arm can move to
 
-        public static final double SECOND_ARM_KP = 0.1;
+        public static final double FIRST_ARM_KP = 0.009;
+        public static final double FIRST_ARM_KI = 0;
+        public static final double FIRST_ARM_KD = 0.025;
+        public static final double FIRST_ARM_KF = 0.053;
+
+        public static final double SECOND_ARM_KP = 0.006;
         public static final double SECOND_ARM_KI = 0;
         public static final double SECOND_ARM_KD = 0;
         public static final double SECOND_ARM_KF = 0;

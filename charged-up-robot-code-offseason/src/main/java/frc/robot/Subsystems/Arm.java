@@ -43,7 +43,6 @@ public class Arm extends SubsystemBase{
     }
 
     /**
-     * 
      * @return the only instance of Arm
      */
     public static Arm getInstance(){
@@ -55,14 +54,14 @@ public class Arm extends SubsystemBase{
 
 
     /**
-     * @param angle - target angle of the first arm in degrees(0 - 360).
+     * @param angle - target angle of the first arm in degrees(-180 - 180).
      */
     public void turnFirstTo(double angle){
         m_firstArmMotor.getPIDController().setReference(angle, ControlType.kPosition);
     }
 
     /**
-     * @param angle - target angle of the second arm in degrees(0 - 360).
+     * @param angle - target angle of the second arm in degrees(-180 - 180).
      */
     public void turnSecondTo(double angle){
         m_secondArmMotor.getPIDController().setReference(angle, ControlType.kPosition);
