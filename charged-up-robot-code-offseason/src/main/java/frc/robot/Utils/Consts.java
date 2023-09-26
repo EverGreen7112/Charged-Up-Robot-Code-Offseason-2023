@@ -23,6 +23,9 @@ public class Consts {
 
         public static final double PITCH_ANGLE_THRESHOLD = 2;
 
+        public static final double BALANCE_KP = 0;
+
+
 
     }
     
