@@ -1,5 +1,6 @@
 package frc.robot.Commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Subsystems.Arm;
 import frc.robot.Subsystems.Arm.ArmNumber;
@@ -35,4 +36,8 @@ public class MoveArmToAngle extends CommandBase{
         }
     }
 
+    @Override
+    public void execute() {
+        Arm.getInstance().setF(ArmNumber.FIRST_ARM, Consts.ArmConsts.FIRST_ARM_KF * Math.sin(Math.toRadians(m_targetAngle)));
+    }
 }

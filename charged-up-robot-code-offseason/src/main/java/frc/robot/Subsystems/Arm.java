@@ -2,8 +2,10 @@ package frc.robot.Subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.ControlType;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Utils.Consts;
 
@@ -22,6 +24,10 @@ public class Arm extends SubsystemBase{
         m_firstArmMotor = new CANSparkMax(Consts.ArmConsts.FIRST_ARM_ID, MotorType.kBrushless);
         m_secondArmMotor = new CANSparkMax(Consts.ArmConsts.SECOND_ARM_ID, MotorType.kBrushless);
 
+        //config factory defaults in motor controllers
+        m_firstArmMotor.restoreFactoryDefaults();
+        m_secondArmMotor.restoreFactoryDefaults();
+
         // config pid values of motor controllers
         m_firstArmMotor.getPIDController().setP(Consts.ArmConsts.FIRST_ARM_KP);
         m_firstArmMotor.getPIDController().setI(Consts.ArmConsts.FIRST_ARM_KI);
@@ -33,13 +39,11 @@ public class Arm extends SubsystemBase{
         m_secondArmMotor.getPIDController().setD(Consts.ArmConsts.SECOND_ARM_KD);
         m_secondArmMotor.getPIDController().setFF(Consts.ArmConsts.SECOND_ARM_KF);
 
-        //config factory defaults in motor controllers
-        m_firstArmMotor.restoreFactoryDefaults();
-        m_secondArmMotor.restoreFactoryDefaults();
-
         //convert rotation motor position value to degrees and take care of gear ratio
         m_firstArmMotor.getEncoder().setPositionConversionFactor(Consts.ArmConsts.FIRST_ARM_GEAR_RATIO * 360);
         m_secondArmMotor.getEncoder().setPositionConversionFactor(Consts.ArmConsts.SECOND_ARM_GEAR_RATIO * 360);
+
+        m_secondArmMotor.setIdleMode(IdleMode.kBrake);
     }
 
     /**
@@ -52,16 +56,18 @@ public class Arm extends SubsystemBase{
         return m_instance;
     }
 
+    @Override
+    public void periodic() {}
 
     /**
-     * @param angle - target angle of the first arm in degrees(-180 - 180).
+     * @param angle target angle of the first arm in degrees(-180 - 180).
      */
     public void turnFirstTo(double angle){
         m_firstArmMotor.getPIDController().setReference(angle, ControlType.kPosition);
     }
 
     /**
-     * @param angle - target angle of the second arm in degrees(-180 - 180).
+     * @param angle target angle of the second arm in degrees(-180 - 180).
      */
     public void turnSecondTo(double angle){
         m_secondArmMotor.getPIDController().setReference(angle, ControlType.kPosition);
@@ -83,4 +89,12 @@ public class Arm extends SubsystemBase{
         return m_secondArmMotor.getEncoder().getPosition();
     }
 
+    public void setF(ArmNumber armNumber, double kf){
+        if(armNumber == ArmNumber.FIRST_ARM){
+            this.m_firstArmMotor.getPIDController().setFF(kf);
+        }
+        else if(armNumber == ArmNumber.SECOND_ARM){
+            this.m_secondArmMotor.getPIDController().setFF(kf);
+        }
+    }
 }
