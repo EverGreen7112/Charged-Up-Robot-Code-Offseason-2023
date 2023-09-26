@@ -23,7 +23,12 @@ public class driveMeter extends CommandBase {
 
     @Override
     public void execute() {
-        Chassis.getInstance().driveTank(0.1, 0.1);
+        double lastMeter = Chassis.getInstance().getChassisMeters();
+        double P = m_targetMeters - (Chassis.getInstance().getChassisMeters());
+        double D = (Chassis.getInstance().getChassisMeters()) - lastMeter;
+        double PIDOutput = (P * Consts.ChassisConsts.TURN_KP) - (D * Consts.ChassisConsts.TURN_KD);
+
+        Chassis.getInstance().driveTank(PIDOutput, PIDOutput);
     }
 
     @Override

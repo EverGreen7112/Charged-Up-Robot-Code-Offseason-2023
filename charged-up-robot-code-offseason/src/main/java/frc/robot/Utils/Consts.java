@@ -14,6 +14,10 @@ public class Consts {
 
         public static final double DRIVE_METERS_THRESHOLD = 0.1;
         public static final double TURN_ANGLE_THRESHOLD = 2;
+
+        public static final double TURN_KP = 0;
+        public static final double TURN_KD = 0;
+
     }
     
 }
