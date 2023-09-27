@@ -1,8 +1,5 @@
 package frc.robot.Commands;
 
-import com.revrobotics.SparkMaxAbsoluteEncoder;
-
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Subsystems.Chassis;
 import frc.robot.Utils.Consts;
@@ -15,7 +12,6 @@ public class driveMeter extends CommandBase { // CR_NOTE: driveMeter is not a me
     private double m_lastTraveldLeftMeters = Chassis.getInstance().getLeftChassisMeters();
 
     public driveMeter(double targetMeters) {
-        // CR_NOTE: use PID for both left and right sides independantely
         m_targetRightMeters = targetMeters + Chassis.getInstance().getRightChassisMeters();
         m_targetLeftMeters = targetMeters + Chassis.getInstance().getLeftChassisMeters();
 
