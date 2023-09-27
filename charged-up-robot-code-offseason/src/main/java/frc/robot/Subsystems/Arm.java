@@ -43,6 +43,7 @@ public class Arm extends SubsystemBase{
         m_firstArmMotor.getEncoder().setPositionConversionFactor(Consts.ArmConsts.FIRST_ARM_GEAR_RATIO * 360);
         m_secondArmMotor.getEncoder().setPositionConversionFactor(Consts.ArmConsts.SECOND_ARM_GEAR_RATIO * 360);
 
+        //lock second arm
         m_secondArmMotor.setIdleMode(IdleMode.kBrake);
     }
 
@@ -57,7 +58,10 @@ public class Arm extends SubsystemBase{
     }
 
     @Override
-    public void periodic() {}
+    public void periodic() {
+        SmartDashboard.putNumber("first angle", getFirstAngle());
+        SmartDashboard.putNumber("second angle", getSecondAngle());
+    }
 
     /**
      * @param angle target angle of the first arm in degrees(-180 - 180).
@@ -74,7 +78,6 @@ public class Arm extends SubsystemBase{
     }
 
     /**
-     * 
      * @return current angle of first arm
      */
     public double getFirstAngle(){
@@ -82,13 +85,16 @@ public class Arm extends SubsystemBase{
     }
 
     /**
-     * 
      * @return current angle of second arm
      */
     public double getSecondAngle(){
         return m_secondArmMotor.getEncoder().getPosition();
     }
 
+    /**
+     * @param armNumber - which arm to move(1 is the bigger arm 2 is the smaller arm)
+     * @param kf - new value to assign to f.
+     */
     public void setF(ArmNumber armNumber, double kf){
         if(armNumber == ArmNumber.FIRST_ARM){
             this.m_firstArmMotor.getPIDController().setFF(kf);

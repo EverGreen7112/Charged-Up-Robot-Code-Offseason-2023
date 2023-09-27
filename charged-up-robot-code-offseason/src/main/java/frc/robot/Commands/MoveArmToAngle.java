@@ -1,6 +1,6 @@
 package frc.robot.Commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Subsystems.Arm;
 import frc.robot.Subsystems.Arm.ArmNumber;
@@ -25,6 +25,9 @@ public class MoveArmToAngle extends CommandBase{
     public void initialize() {
         addRequirements(Arm.getInstance());
 
+        //take care of other forces on the first arm
+        Arm.getInstance().setF(ArmNumber.FIRST_ARM, Consts.ArmConsts.FIRST_ARM_KF * Math.sin(Math.toRadians(m_targetAngle)));
+
         if(m_armNumber == ArmNumber.FIRST_ARM){
             //angle range
             m_targetAngle = MathUtils.clamp(m_targetAngle, Consts.ArmConsts.MIN_FIRST_ANGLE_RANGE, Consts.ArmConsts.MAX_FIRST_ANGLE_RANGE);
@@ -34,10 +37,5 @@ public class MoveArmToAngle extends CommandBase{
             //second arm does not have a physical range
             Arm.getInstance().turnSecondTo(m_targetAngle);
         }
-    }
-
-    @Override
-    public void execute() {
-        Arm.getInstance().setF(ArmNumber.FIRST_ARM, Consts.ArmConsts.FIRST_ARM_KF * Math.sin(Math.toRadians(m_targetAngle)));
     }
 }
