@@ -33,9 +33,7 @@ public class TurnToAngle extends CommandBase { // CR_NOTE: where documentation??
 
     @Override
     public boolean isFinished() {
-        // if you reached within TURN_ANGLE_THRESHOLD
-        return Math.abs(
-                m_targetAngle - Chassis.getInstance().getChassisAngle()) < Consts.ChassisConsts.TURN_ANGLE_THRESHOLD;
+        return Math.abs(m_targetAngle - Chassis.getInstance().getChassisAngle()) <= Consts.ChassisConsts.TURN_ANGLE_THRESHOLD;
     }
 
     @Override

@@ -2,6 +2,7 @@ package frc.robot.Subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -27,6 +28,13 @@ public class Chassis extends SubsystemBase {
         m_rightMotors = new MotorControllerGroup(m_leftBack, m_leftMid, m_leftForward);
         m_leftMotors = new MotorControllerGroup(m_rightBack, m_rightMid, m_rightForward);
 
+        m_rightForward.getEncoder().setPositionConversionFactor(Consts.ChassisConsts.DISTANCE_PER_ROTATION * Consts.ChassisConsts.CHASSIS_WHEEL_GEAR_RATIO);
+        m_rightMid.getEncoder().setPositionConversionFactor(Consts.ChassisConsts.DISTANCE_PER_ROTATION * Consts.ChassisConsts.CHASSIS_WHEEL_GEAR_RATIO);
+        m_rightBack.getEncoder().setPositionConversionFactor(Consts.ChassisConsts.DISTANCE_PER_ROTATION * Consts.ChassisConsts.CHASSIS_WHEEL_GEAR_RATIO);
+        m_leftForward.getEncoder().setPositionConversionFactor(Consts.ChassisConsts.DISTANCE_PER_ROTATION * Consts.ChassisConsts.CHASSIS_WHEEL_GEAR_RATIO);
+        m_leftMid.getEncoder().setPositionConversionFactor(Consts.ChassisConsts.DISTANCE_PER_ROTATION * Consts.ChassisConsts.CHASSIS_WHEEL_GEAR_RATIO);
+        m_leftBack.getEncoder().setPositionConversionFactor(Consts.ChassisConsts.DISTANCE_PER_ROTATION * Consts.ChassisConsts.CHASSIS_WHEEL_GEAR_RATIO);
+
     }
 
     public static Chassis getInstance() {
@@ -46,13 +54,11 @@ public class Chassis extends SubsystemBase {
     }
 
     public double getRightChassisMeters() {
-        return (m_rightForward.getEncoder().getPosition() * Consts.ChassisConsts.DISTANCE_PER_ROTATION
-                * Consts.ChassisConsts.CHASSIS_WHEAL_GEAR_RATIO);
+        return m_rightForward.getEncoder().getPosition();
     }
 
     public double getLeftChassisMeters() {
-        return (m_leftForward.getEncoder().getPosition() * Consts.ChassisConsts.DISTANCE_PER_ROTATION
-                * Consts.ChassisConsts.CHASSIS_WHEAL_GEAR_RATIO);
+        return m_leftForward.getEncoder().getPosition();
     }
 
     public double getChassisAngle() {
@@ -64,6 +70,16 @@ public class Chassis extends SubsystemBase {
     }
     public AHRS getNavX(){
         return m_navX;
+    }
+    public void setIdleMode(IdleMode mode){
+        this.m_rightForward.setIdleMode(mode);
+        this.m_rightMid.setIdleMode(mode);
+        this.m_rightBack.setIdleMode(mode);
+        this.m_leftForward.setIdleMode(mode);
+        this.m_leftMid.setIdleMode(mode);
+        this.m_leftBack.setIdleMode(mode);
+
+
     }
 
 }

@@ -5,24 +5,28 @@ import frc.robot.Subsystems.Chassis;
 import frc.robot.Utils.Consts;
 
 public class Balance extends CommandBase {
-    private double m_lastPitch = Chassis.getInstance().getNavX().getRoll();
-    private double m_targetPitch;
-
-    public Balance(double targetPitch) {
-        this.m_targetPitch = targetPitch;
+    public double lastPitch; 
+    public double kFMultiplicator;
+    public Balance() {
     }
 
     @Override
     public void initialize() {
+        kFMultiplicator = Consts.ChassisConsts.BALANCE_KF;
+        lastPitch = Chassis.getInstance().getNavX().getRoll();
+
         addRequirements(Chassis.getInstance());
     }
 
     @Override
     public void execute() {
         double currentPitch = Chassis.getInstance().getNavX().getRoll();
-        double p = m_targetPitch - currentPitch;
-        Chassis.getInstance().driveTank(p * Consts.ChassisConsts.BALANCE_KP, p * Consts.ChassisConsts.BALANCE_KP);
-
+        double p = currentPitch; // target is roll 0
+        Chassis.getInstance().driveTank(p * Consts.ChassisConsts.BALANCE_KP + kFMultiplicator, p * Consts.ChassisConsts.BALANCE_KP + kFMultiplicator);
+        if ((lastPitch > 0 && currentPitch < 0) || (lastPitch < 0 && currentPitch > 0)){
+            kFMultiplicator /= 2;
+        }
+        lastPitch = currentPitch;
     }
 
     @Override
