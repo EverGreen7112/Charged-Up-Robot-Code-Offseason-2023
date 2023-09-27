@@ -28,8 +28,7 @@ public class MoveArmByAngle extends CommandBase{
             //angle range
             double targetAngle = MathUtils.clamp(Arm.getInstance().getFirstAngle() + m_degrees, Consts.ArmConsts.MIN_FIRST_ANGLE_RANGE, Consts.ArmConsts.MAX_FIRST_ANGLE_RANGE);
             //take care of other forces on the first arm
-        Arm.getInstance().setF(ArmNumber.FIRST_ARM, Consts.ArmConsts.FIRST_ARM_KF * Math.sin(Math.toRadians(targetAngle)));
-
+            Arm.getInstance().setF(ArmNumber.FIRST_ARM, Consts.ArmConsts.FIRST_ARM_KF * Math.sin(Math.toRadians(targetAngle)));
             Arm.getInstance().turnFirstTo(targetAngle);
         }
         else if(m_armNum == ArmNumber.SECOND_ARM){
