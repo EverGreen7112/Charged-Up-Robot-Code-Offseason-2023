@@ -5,8 +5,14 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.Commands.MoveArmByAngle;
+import frc.robot.Commands.MoveArmToAngle;
+import frc.robot.Commands.MoveBothArms;
+import frc.robot.Subsystems.Arm;
+import frc.robot.Subsystems.Arm.ArmNumber;
 
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
@@ -21,10 +27,13 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
+    SmartDashboard.putNumber("first angle", Arm.getInstance().getFirstAngle());
+    SmartDashboard.putNumber("second angle", Arm.getInstance().getSecondAngle());
   }
 
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+  }
 
   @Override
   public void disabledPeriodic() {}
