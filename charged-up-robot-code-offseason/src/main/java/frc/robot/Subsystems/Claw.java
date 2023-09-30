@@ -11,7 +11,7 @@ import frc.robot.Utils.Consts;
 
 public class Claw extends SubsystemBase {
 
-    private TalonSRX m_clawMotor;
+    public TalonSRX m_clawMotor;
     private CANSparkMax m_clawRollers;
 
     private static DigitalInput m_limitSwitchOpen;
@@ -24,9 +24,11 @@ public class Claw extends SubsystemBase {
         m_clawMotor = new TalonSRX(Consts.ClawConsts.CLAW_MOTOR_ID);
         m_clawRollers = new CANSparkMax(Consts.ClawConsts.CLAW_ROLLERS_ID, MotorType.kBrushless);
 
-        m_limitSwitchOpen = new DigitalInput(Consts.ClawConsts.OPEN_SENSOR_CHANNEL);
-        m_limitSwitchCube = new DigitalInput(Consts.ClawConsts.CLOSE_TO_CUBE_SENSOR_CHANNEL);
-        m_limitSwitchCone = new DigitalInput(Consts.ClawConsts.CLOSE_TO_CONE_SENSOR_CHANNEL);
+        // m_limitSwitchOpen = new DigitalInput(Consts.ClawConsts.OPEN_SENSOR_CHANNEL);
+        // m_limitSwitchCube = new
+        // DigitalInput(Consts.ClawConsts.CLOSE_TO_CUBE_SENSOR_CHANNEL);
+        // m_limitSwitchCone = new
+        // DigitalInput(Consts.ClawConsts.CLOSE_TO_CONE_SENSOR_CHANNEL);
     }
 
     public static Claw getIntance() {
@@ -61,15 +63,18 @@ public class Claw extends SubsystemBase {
     }
 
     public static Boolean getlimitSwitchOpenBool() {
-        return m_limitSwitchOpen.get();
+        // return m_limitSwitchOpen.get();
+        return true;
     }
 
     public static Boolean getlimitSwitchCubeBool() {
-        return m_limitSwitchCube.get();
+        // return m_limitSwitchCube.get();
+        return true;
     }
 
     public static Boolean getlimitSwitchConeBool() {
-        return m_limitSwitchCone.get();
+        // return m_limitSwitchCone.get();
+        return true;
     }
 
 }
