@@ -14,9 +14,6 @@ public class Consts {
         public static final double DISTANCE_PER_ROTATION = 2 * Math.PI * 0.076; //wheel perimeter(in meters)
         public static final double CHASSIS_WHEEL_GEAR_RATIO = 1 / 4.128326627;
 
-        public static final double DISTANCE_PER_ROTATION = 2 * Math.PI * 0.076; //wheel perimeter(in meters)
-        public static final double CHASSIS_WHEEL_GEAR_RATIO = 1 / 4.128326627;
-
         public static final double DRIVE_METERS_THRESHOLD = 0.1;
         public static final double TURN_ANGLE_THRESHOLD = 2;
 

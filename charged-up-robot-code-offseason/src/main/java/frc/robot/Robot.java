@@ -8,15 +8,12 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.Utils.Consts;
 import frc.robot.Commands.Chassis.Balance;
-import frc.robot.Commands.Chassis.ChassisDrive;
 import frc.robot.Commands.Chassis.DriveUntilTilted;
 import frc.robot.Commands.Chassis.driveMeter;
-import frc.robot.Utils.Consts;
-import frc.robot.Commands.MoveArmByAngle;
-import frc.robot.Commands.MoveArmToAngle;
-import frc.robot.Commands.MoveBothArms;
 import frc.robot.Subsystems.Arm;
+import frc.robot.Subsystems.Chassis;
 import frc.robot.Subsystems.Arm.ArmNumber;
 
 public class Robot extends TimedRobot {
@@ -69,11 +66,6 @@ public class Robot extends TimedRobot {
     driveMeter driveMeter = new driveMeter(1);
     DriveUntilTilted driveUntilTilted = new DriveUntilTilted();
     Balance balance = new Balance();
-    // drive.schedule(1);
-    
-
-    ChassisDrive chassisDrive = new ChassisDrive(() ->{ return RobotContainer.left.getY();}, () ->{ return RobotContainer.right.getY() * -1;});
-    chassisDrive.schedule();
   } 
 
   @Override
