@@ -86,16 +86,5 @@ public class Chassis extends SubsystemBase {
 
 
     }
-    @Override
-    public void periodic() {
-        SmartDashboard.putNumber("right forward output", m_rightForward.get());
-        SmartDashboard.putNumber("right mid output", m_rightMid.get());
-        SmartDashboard.putNumber("right back output", m_rightBack.get());
-        SmartDashboard.putNumber("left forward output", m_leftForward.get());
-        SmartDashboard.putNumber("left mid output", m_leftMid.get());
-        SmartDashboard.putNumber("left back output", m_leftBack.get());
-
-        super.periodic();
-    }
 
 }
