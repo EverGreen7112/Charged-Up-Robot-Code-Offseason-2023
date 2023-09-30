@@ -59,8 +59,6 @@ public class Arm extends SubsystemBase{
 
     @Override
     public void periodic() {
-        SmartDashboard.putNumber("first angle", getFirstAngle());
-        SmartDashboard.putNumber("second angle", getSecondAngle());
     }
 
     /**

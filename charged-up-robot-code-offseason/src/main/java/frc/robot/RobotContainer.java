@@ -21,8 +21,8 @@ import frc.robot.Utils.Consts;
 
 public class RobotContainer {
 
-  public static Joystick left = new Joystick(1);
-  public static Joystick right = new Joystick(0);
+  public static Joystick left = new Joystick(Consts.JoysticksConsts.LEFT_JOYSTICK);
+  public static Joystick right = new Joystick(Consts.JoysticksConsts.RIGHT_JOYSTICK);
   
 
   private Joystick m_operator = new Joystick(Consts.JoysticksConsts.OPERATOR);

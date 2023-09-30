@@ -46,7 +46,7 @@ public class Consts {
         public static final double MAX_SECOND_ANGLE_RANGE = 180; //max angle the second arm can move to
         public static final double MIN_SECOND_ANGLE_RANGE = -180; //min angle the second arm can move to
 
-        public static final double FIRST_ARM_KP = 0.007;
+        public static final double FIRST_ARM_KP = 0.00;
         public static final double FIRST_ARM_KI = 0;
         public static final double FIRST_ARM_KD = 0;//0.025;
         public static final double FIRST_ARM_KF = 0.00075;
@@ -92,6 +92,9 @@ public class Consts {
     }
 
     public class JoysticksConsts {
-        public static final int OPERATOR = 2;
+        public static final int OPERATOR = 2,
+                                LEFT_JOYSTICK = 1,
+                                RIGHT_JOYSTICK = 0;
+
     }
 }

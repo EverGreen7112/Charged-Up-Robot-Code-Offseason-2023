@@ -18,6 +18,7 @@ import frc.robot.Subsystems.Arm;
 import frc.robot.Subsystems.Chassis;
 import frc.robot.Subsystems.Arm.ArmNumber;
 import frc.robot.Commands.Open;
+import frc.robot.Commands.Arm.MoveBothArms;
 import frc.robot.Subsystems.Claw;
 
 public class Robot extends TimedRobot {
@@ -66,14 +67,14 @@ public class Robot extends TimedRobot {
   public void autonomousExit() {
   }
 
+  public MoveBothArms cmd = new MoveBothArms(90, 0);
+
   @Override
   public void teleopInit() {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    driveMeter driveMeter = new driveMeter(1);
-    DriveUntilTilted driveUntilTilted = new DriveUntilTilted();
-    Balance balance = new Balance();
+    // cmd.schedule();
   } 
 
   @Override
