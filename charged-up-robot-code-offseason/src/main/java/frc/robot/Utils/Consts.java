@@ -9,6 +9,9 @@ public class Consts {
         public static final int RIGHT_MID_ID = 3;
         public static final int RIGHT_BACK_ID = 4;
 
+        public static final double SPEED = 0.3;
+        public static final double JOYSTICK_THRESHOLD = 0.2;
+
         public static final double DISTANCE_PER_ROTATION = 2 * Math.PI * 0.076; //wheel perimeter(in meters)
         public static final double CHASSIS_WHEEL_GEAR_RATIO = 1 / 4.128326627;
 
@@ -28,7 +31,6 @@ public class Consts {
 
         public static final double TILTED_THRESH_HOLD = 1;
         public static final double DRIVE_UNTIL_TILTED_SPEED = 0.1;
-
     }
     
 }

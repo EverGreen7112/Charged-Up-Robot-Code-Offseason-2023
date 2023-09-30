@@ -1,6 +1,8 @@
-package frc.robot.Commands;
+package frc.robot.Commands.Chassis;
 
 import frc.robot.Subsystems.Chassis;
+import frc.robot.Utils.Consts;
+
 import java.util.function.Supplier;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -22,7 +24,13 @@ public class ChassisDrive extends CommandBase {
 
   @Override
   public void execute() {
-    Chassis.getInstance().driveTank(m_leftMotorSpeed.get(), m_rightMotorSpeed.get());
+    if (Math.abs(m_leftMotorSpeed.get()) > Consts.ChassisConsts.JOYSTICK_THRESHOLD && Math.abs(m_rightMotorSpeed.get()) > Consts.ChassisConsts.JOYSTICK_THRESHOLD ){
+      return;
+    }
+
+
+    Chassis.getInstance().driveTank(m_leftMotorSpeed.get() * Consts.ChassisConsts.SPEED, m_rightMotorSpeed.get() * Consts.ChassisConsts.SPEED);
+
   }
 
   @Override

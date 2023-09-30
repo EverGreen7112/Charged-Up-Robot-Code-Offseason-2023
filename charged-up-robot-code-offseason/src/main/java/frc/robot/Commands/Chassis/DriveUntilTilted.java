@@ -1,4 +1,4 @@
-package frc.robot.Commands;
+package frc.robot.Commands.Chassis;
 
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.revrobotics.CANSparkMax.IdleMode;

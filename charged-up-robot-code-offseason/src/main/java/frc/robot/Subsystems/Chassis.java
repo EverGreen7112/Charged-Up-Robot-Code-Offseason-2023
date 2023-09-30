@@ -6,7 +6,9 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotContainer;
 import frc.robot.Utils.Consts;
 import frc.robot.Utils.MathUtils;
 
@@ -17,6 +19,8 @@ public class Chassis extends SubsystemBase {
     private static Chassis m_chassis;
 
     public Chassis() {
+
+        
 
         m_rightForward = new CANSparkMax(Consts.ChassisConsts.LEFT_FORWARD_ID, MotorType.kBrushless);
         m_rightMid = new CANSparkMax(Consts.ChassisConsts.LEFT_MID_ID, MotorType.kBrushless);
@@ -35,6 +39,7 @@ public class Chassis extends SubsystemBase {
         m_leftMid.getEncoder().setPositionConversionFactor(Consts.ChassisConsts.DISTANCE_PER_ROTATION * Consts.ChassisConsts.CHASSIS_WHEEL_GEAR_RATIO);
         m_leftBack.getEncoder().setPositionConversionFactor(Consts.ChassisConsts.DISTANCE_PER_ROTATION * Consts.ChassisConsts.CHASSIS_WHEEL_GEAR_RATIO);
 
+        m_rightMotors.setInverted(true);
     }
 
     public static Chassis getInstance() {
@@ -80,6 +85,17 @@ public class Chassis extends SubsystemBase {
         this.m_leftBack.setIdleMode(mode);
 
 
+    }
+    @Override
+    public void periodic() {
+        SmartDashboard.putNumber("right forward output", m_rightForward.get());
+        SmartDashboard.putNumber("right mid output", m_rightMid.get());
+        SmartDashboard.putNumber("right back output", m_rightBack.get());
+        SmartDashboard.putNumber("left forward output", m_leftForward.get());
+        SmartDashboard.putNumber("left mid output", m_leftMid.get());
+        SmartDashboard.putNumber("left back output", m_leftBack.get());
+
+        super.periodic();
     }
 
 }
