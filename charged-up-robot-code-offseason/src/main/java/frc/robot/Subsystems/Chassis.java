@@ -20,8 +20,6 @@ public class Chassis extends SubsystemBase {
 
     public Chassis() {
 
-        
-
         m_rightForward = new CANSparkMax(Consts.ChassisConsts.LEFT_FORWARD_ID, MotorType.kBrushless);
         m_rightMid = new CANSparkMax(Consts.ChassisConsts.LEFT_MID_ID, MotorType.kBrushless);
         m_rightBack = new CANSparkMax(Consts.ChassisConsts.LEFT_BACK_ID, MotorType.kBrushless);
@@ -32,12 +30,18 @@ public class Chassis extends SubsystemBase {
         m_rightMotors = new MotorControllerGroup(m_leftBack, m_leftMid, m_leftForward);
         m_leftMotors = new MotorControllerGroup(m_rightBack, m_rightMid, m_rightForward);
 
-        m_rightForward.getEncoder().setPositionConversionFactor(Consts.ChassisConsts.DISTANCE_PER_ROTATION * Consts.ChassisConsts.CHASSIS_WHEEL_GEAR_RATIO);
-        m_rightMid.getEncoder().setPositionConversionFactor(Consts.ChassisConsts.DISTANCE_PER_ROTATION * Consts.ChassisConsts.CHASSIS_WHEEL_GEAR_RATIO);
-        m_rightBack.getEncoder().setPositionConversionFactor(Consts.ChassisConsts.DISTANCE_PER_ROTATION * Consts.ChassisConsts.CHASSIS_WHEEL_GEAR_RATIO);
-        m_leftForward.getEncoder().setPositionConversionFactor(Consts.ChassisConsts.DISTANCE_PER_ROTATION * Consts.ChassisConsts.CHASSIS_WHEEL_GEAR_RATIO);
-        m_leftMid.getEncoder().setPositionConversionFactor(Consts.ChassisConsts.DISTANCE_PER_ROTATION * Consts.ChassisConsts.CHASSIS_WHEEL_GEAR_RATIO);
-        m_leftBack.getEncoder().setPositionConversionFactor(Consts.ChassisConsts.DISTANCE_PER_ROTATION * Consts.ChassisConsts.CHASSIS_WHEEL_GEAR_RATIO);
+        m_rightForward.getEncoder().setPositionConversionFactor(
+                Consts.ChassisConsts.DISTANCE_PER_ROTATION * Consts.ChassisConsts.CHASSIS_WHEEL_GEAR_RATIO);
+        m_rightMid.getEncoder().setPositionConversionFactor(
+                Consts.ChassisConsts.DISTANCE_PER_ROTATION * Consts.ChassisConsts.CHASSIS_WHEEL_GEAR_RATIO);
+        m_rightBack.getEncoder().setPositionConversionFactor(
+                Consts.ChassisConsts.DISTANCE_PER_ROTATION * Consts.ChassisConsts.CHASSIS_WHEEL_GEAR_RATIO);
+        m_leftForward.getEncoder().setPositionConversionFactor(
+                Consts.ChassisConsts.DISTANCE_PER_ROTATION * Consts.ChassisConsts.CHASSIS_WHEEL_GEAR_RATIO);
+        m_leftMid.getEncoder().setPositionConversionFactor(
+                Consts.ChassisConsts.DISTANCE_PER_ROTATION * Consts.ChassisConsts.CHASSIS_WHEEL_GEAR_RATIO);
+        m_leftBack.getEncoder().setPositionConversionFactor(
+                Consts.ChassisConsts.DISTANCE_PER_ROTATION * Consts.ChassisConsts.CHASSIS_WHEEL_GEAR_RATIO);
 
         m_rightMotors.setInverted(true);
     }
@@ -73,17 +77,18 @@ public class Chassis extends SubsystemBase {
     public double getRawChassisAngle() {
         return m_navX.getAngle();
     }
-    public AHRS getNavX(){
+
+    public AHRS getNavX() {
         return m_navX;
     }
-    public void setIdleMode(IdleMode mode){
+
+    public void setIdleMode(IdleMode mode) {
         this.m_rightForward.setIdleMode(mode);
         this.m_rightMid.setIdleMode(mode);
         this.m_rightBack.setIdleMode(mode);
         this.m_leftForward.setIdleMode(mode);
         this.m_leftMid.setIdleMode(mode);
         this.m_leftBack.setIdleMode(mode);
-
 
     }
 
