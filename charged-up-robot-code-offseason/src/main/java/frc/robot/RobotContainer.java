@@ -16,6 +16,10 @@ import frc.robot.Commands.CloseToCube;
 import frc.robot.Commands.Open;
 import frc.robot.Commands.RollersInside;
 import frc.robot.Commands.RollersOutside;
+import frc.robot.Commands.Chassis.Balance;
+import frc.robot.Commands.Chassis.ChassisDrive;
+import frc.robot.Commands.Chassis.DriveUntilTilted;
+import frc.robot.Commands.Chassis.driveMeter;
 import frc.robot.Subsystems.Claw;
 import frc.robot.Utils.Consts;
 
@@ -23,24 +27,40 @@ public class RobotContainer {
 
   public static Joystick left = new Joystick(Consts.JoysticksConsts.LEFT_JOYSTICK);
   public static Joystick right = new Joystick(Consts.JoysticksConsts.RIGHT_JOYSTICK);
-  
 
   private Joystick m_operator = new Joystick(Consts.JoysticksConsts.OPERATOR);
+
+  public static ChassisDrive chassisDrive = new ChassisDrive(() -> {
+    return left.getY() * -1;
+  },
+      () -> {
+        return right.getY() * -1;
+      });
+
+  public static Balance balance = new Balance();
+  public static driveMeter driveMeter = new driveMeter(1);
+  public static DriveUntilTilted driveUntilTilted = new DriveUntilTilted();
 
   public RobotContainer() {
     configureBindings();
   }
 
   private void configureBindings() {
-    Trigger open = new JoystickButton(m_operator, Consts.ButtonPorts.A).onTrue(new Open());
-    Trigger close = new JoystickButton(m_operator, Consts.ButtonPorts.B).onTrue(new CloseToCube());
+    Trigger open = new JoystickButton(m_operator, Consts.ButtonPorts.A).whileTrue(new InstantCommand(() -> {
+      Claw.getIntance().open();
+    }));
+
+    Trigger close = new JoystickButton(m_operator, Consts.ButtonPorts.B).whileTrue(new InstantCommand(() -> {
+      Claw.getIntance().close();
+    }));
+
     Trigger stop = new JoystickButton(m_operator, Consts.ButtonPorts.X).onTrue(new InstantCommand(() -> {
       Claw.getIntance().stop();
     }, Claw.getIntance()));
-  }
 
-  Trigger roll = new JoystickButton(m_operator, Consts.ButtonPorts.RB).whileTrue(new RollersInside());
-  Trigger rollin = new JoystickButton(m_operator, Consts.ButtonPorts.LB).whileTrue(new RollersOutside());
+    Trigger roll = new JoystickButton(m_operator, Consts.ButtonPorts.RB).whileTrue(new RollersInside());
+    Trigger rollin = new JoystickButton(m_operator, Consts.ButtonPorts.LB).whileTrue(new RollersOutside());
+  }
 
   public Command getAutonomousCommand() {
     return Commands.print("No autonomous command configured");

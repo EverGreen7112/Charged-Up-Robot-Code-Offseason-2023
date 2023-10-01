@@ -4,6 +4,8 @@ import frc.robot.Subsystems.Chassis;
 import frc.robot.Utils.Consts;
 
 import java.util.function.Supplier;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class ChassisDrive extends CommandBase {
@@ -19,17 +21,15 @@ public class ChassisDrive extends CommandBase {
   @Override
   public void initialize() {
     addRequirements(Chassis.getInstance());
-
   }
 
   @Override
   public void execute() {
-    if (Math.abs(m_leftMotorSpeed.get()) > Consts.ChassisConsts.JOYSTICK_THRESHOLD && Math.abs(m_rightMotorSpeed.get()) > Consts.ChassisConsts.JOYSTICK_THRESHOLD ){
-      return;
-    }
 
-
-    Chassis.getInstance().driveTank(m_leftMotorSpeed.get() * Consts.ChassisConsts.SPEED, m_rightMotorSpeed.get() * Consts.ChassisConsts.SPEED);
+    Chassis.getInstance().driveTank(m_leftMotorSpeed.get() * Consts.ChassisConsts.SPEED,
+        m_rightMotorSpeed.get() * Consts.ChassisConsts.SPEED);
+    SmartDashboard.putNumber("right", m_leftMotorSpeed.get() * Consts.ChassisConsts.SPEED);
+    SmartDashboard.putNumber("left", m_rightMotorSpeed.get() * Consts.ChassisConsts.SPEED);
 
   }
 

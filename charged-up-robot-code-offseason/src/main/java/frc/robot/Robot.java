@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Subsystems.Arm;
+import frc.robot.Subsystems.Chassis;
+import frc.robot.Utils.KeyboardReader;
 import frc.robot.Commands.Arm.MoveBothArms;
 
 public class Robot extends TimedRobot {
@@ -19,6 +21,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_robotContainer = new RobotContainer();
+    Chassis.getInstance();
   }
 
   @Override
@@ -26,6 +29,9 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
     SmartDashboard.putNumber("first angle", Arm.getInstance().getFirstAngle());
     SmartDashboard.putNumber("second angle", Arm.getInstance().getSecondAngle());
+
+    SmartDashboard.putNumber("elftJoioystick", RobotContainer.left.getY());
+    SmartDashboard.putNumber("rightJoioystick", RobotContainer.right.getY());
   }
 
   @Override
@@ -57,14 +63,14 @@ public class Robot extends TimedRobot {
   public void autonomousExit() {
   }
 
-  public MoveBothArms cmd = new MoveBothArms(90, 0);
-
   @Override
   public void teleopInit() {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    // cmd.schedule();
+
+    // drive with joysticks
+    RobotContainer.chassisDrive.schedule();
   }
 
   @Override

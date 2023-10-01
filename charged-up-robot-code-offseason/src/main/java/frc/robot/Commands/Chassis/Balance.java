@@ -5,8 +5,9 @@ import frc.robot.Subsystems.Chassis;
 import frc.robot.Utils.Consts;
 
 public class Balance extends CommandBase {
-    public double lastPitch; 
+    public double lastPitch;
     public double kFMultiplicator;
+
     public Balance() {
     }
 
@@ -22,8 +23,10 @@ public class Balance extends CommandBase {
     public void execute() {
         double currentPitch = Chassis.getInstance().getNavX().getRoll();
         double p = currentPitch; // target is roll 0
-        Chassis.getInstance().driveTank(p * Consts.ChassisConsts.BALANCE_KP + kFMultiplicator, p * Consts.ChassisConsts.BALANCE_KP + kFMultiplicator);
-        if ((lastPitch > 0 && currentPitch < 0) || (lastPitch < 0 && currentPitch > 0)){
+        double motorInput = p * Consts.ChassisConsts.BALANCE_KP + kFMultiplicator;
+        Chassis.getInstance().driveTank(motorInput, motorInput);
+        if ((Math.abs(lastPitch) > 0 && Math.abs(currentPitch) < 0)
+                || (Math.abs(lastPitch) < 0 && Math.abs(currentPitch) > 0)) {
             kFMultiplicator /= 2;
         }
         lastPitch = currentPitch;
@@ -31,7 +34,7 @@ public class Balance extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return (Math.abs(Chassis.getInstance().getNavX().getRoll()) < Consts.ChassisConsts.PITCH_ANGLE_THRESHOLD); 
+        return (Math.abs(Chassis.getInstance().getNavX().getRoll()) < Consts.ChassisConsts.PITCH_ANGLE_THRESHOLD);
 
     }
 

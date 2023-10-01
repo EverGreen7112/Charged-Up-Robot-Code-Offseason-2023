@@ -3,6 +3,7 @@ package frc.robot.Subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -12,7 +13,8 @@ import frc.robot.Utils.Consts;
 public class Claw extends SubsystemBase {
 
     public TalonSRX m_clawMotor;
-    private CANSparkMax m_clawRollers;
+    private CANSparkMax m_clawLeftRollers;
+    private CANSparkMax m_clawRightRollers;
 
     private static DigitalInput m_limitSwitchOpen;
     private static DigitalInput m_limitSwitchCube;
@@ -22,13 +24,16 @@ public class Claw extends SubsystemBase {
 
     public Claw() {
         m_clawMotor = new TalonSRX(Consts.ClawConsts.CLAW_MOTOR_ID);
-        m_clawRollers = new CANSparkMax(Consts.ClawConsts.CLAW_ROLLERS_ID, MotorType.kBrushless);
-
+        m_clawLeftRollers = new CANSparkMax(Consts.ClawConsts.CLAW_LEFT_ROLLERS_ID, MotorType.kBrushless);
+        m_clawRightRollers = new CANSparkMax(Consts.ClawConsts.CLAW_RIGHT_ROLLERS_ID, MotorType.kBrushless);
         // m_limitSwitchOpen = new DigitalInput(Consts.ClawConsts.OPEN_SENSOR_CHANNEL);
         // m_limitSwitchCube = new
         // DigitalInput(Consts.ClawConsts.CLOSE_TO_CUBE_SENSOR_CHANNEL);
         // m_limitSwitchCone = new
         // DigitalInput(Consts.ClawConsts.CLOSE_TO_CONE_SENSOR_CHANNEL);
+
+        m_clawLeftRollers.setIdleMode(IdleMode.kBrake);
+        m_clawRightRollers.setIdleMode(IdleMode.kBrake);
     }
 
     public static Claw getIntance() {
@@ -51,15 +56,18 @@ public class Claw extends SubsystemBase {
     }
 
     public void rollInside() {
-        m_clawRollers.set(Consts.ClawConsts.ROLLERS_POWER);
+        m_clawLeftRollers.set(Consts.ClawConsts.ROLLERS_POWER);
+        m_clawRightRollers.set(Consts.ClawConsts.ROLLERS_POWER);
     }
 
     public void rollOutside() {
-        m_clawRollers.set(-Consts.ClawConsts.ROLLERS_POWER);
+        m_clawLeftRollers.set(-Consts.ClawConsts.ROLLERS_POWER);
+        m_clawRightRollers.set(Consts.ClawConsts.ROLLERS_POWER);
     }
 
     public void stopRollers() {
-        m_clawRollers.set(0);
+        m_clawLeftRollers.set(0);
+        m_clawRightRollers.set(0);
     }
 
     public static Boolean getlimitSwitchOpenBool() {

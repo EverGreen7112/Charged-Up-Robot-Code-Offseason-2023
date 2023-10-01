@@ -1,7 +1,7 @@
 package frc.robot.Utils;
 
 public class Consts {
-    public class ChassisConsts{
+    public class ChassisConsts {
         public static final int LEFT_FORWARD_ID = 14;
         public static final int LEFT_MID_ID = 1;
         public static final int LEFT_BACK_ID = 2;
@@ -11,7 +11,7 @@ public class Consts {
 
         public static final double SPEED = 0.3;
         public static final double JOYSTICK_THRESHOLD = 0.2;
-        public static final double DISTANCE_PER_ROTATION = 2 * Math.PI * 0.076; //wheel perimeter(in meters)
+        public static final double DISTANCE_PER_ROTATION = 2 * Math.PI * 0.076; // wheel perimeter(in meters)
         public static final double CHASSIS_WHEEL_GEAR_RATIO = 1 / 4.128326627;
 
         public static final double DRIVE_METERS_THRESHOLD = 0.1;
@@ -32,23 +32,23 @@ public class Consts {
         public static final double DRIVE_UNTIL_TILTED_SPEED = 0.1;
 
     }
-    
-    public class ArmConsts{
+
+    public class ArmConsts {
         public static final int FIRST_ARM_ID = 13;
         public static final int SECOND_ARM_ID = 15;
 
-        public static final double FIRST_ARM_GEAR_RATIO = 1/178.3928569921875; // 14 / 50 / 3;
-        public static final double SECOND_ARM_GEAR_RATIO = 1/97.2; // 14 / 50 / 3;
+        public static final double FIRST_ARM_GEAR_RATIO = 1 / 178.3928569921875; // 14 / 50 / 3;
+        public static final double SECOND_ARM_GEAR_RATIO = 1 / 97.2; // 14 / 50 / 3;
 
-        public static final double MAX_FIRST_ANGLE_RANGE = 170; //max angle the first arm can move to
-        public static final double MIN_FIRST_ANGLE_RANGE = -170; //min angle the first arm can move to
+        public static final double MAX_FIRST_ANGLE_RANGE = 170; // max angle the first arm can move to
+        public static final double MIN_FIRST_ANGLE_RANGE = -170; // min angle the first arm can move to
 
-        public static final double MAX_SECOND_ANGLE_RANGE = 180; //max angle the second arm can move to
-        public static final double MIN_SECOND_ANGLE_RANGE = -180; //min angle the second arm can move to
+        public static final double MAX_SECOND_ANGLE_RANGE = 180; // max angle the second arm can move to
+        public static final double MIN_SECOND_ANGLE_RANGE = -180; // min angle the second arm can move to
 
         public static final double FIRST_ARM_KP = 0.00;
         public static final double FIRST_ARM_KI = 0;
-        public static final double FIRST_ARM_KD = 0;//0.025;
+        public static final double FIRST_ARM_KD = 0;// 0.025;
         public static final double FIRST_ARM_KF = 0.00075;
 
         public static final double SECOND_ARM_KP = 0.006;
@@ -56,19 +56,20 @@ public class Consts {
         public static final double SECOND_ARM_KD = 0;
         public static final double SECOND_ARM_KF = 0;
 
-        public static final double SECOND_ARM_OPEN_ANGLE_THRESHOLD = 10; // threshold to start moving second arm (in degrees)
+        public static final double SECOND_ARM_OPEN_ANGLE_THRESHOLD = 10; // threshold to start moving second arm (in
+                                                                         // degrees)
     }
-
 
     public class ClawConsts {
         public static final int CLAW_MOTOR_ID = 1;
-        public static final int CLAW_ROLLERS_ID = 10;
+        public static final int CLAW_LEFT_ROLLERS_ID = 10;
+        public static final int CLAW_RIGHT_ROLLERS_ID = 21;
 
         public static final int OPEN_SENSOR_CHANNEL = 0;
         public static final int CLOSE_TO_CUBE_SENSOR_CHANNEL = 0;
         public static final int CLOSE_TO_CONE_SENSOR_CHANNEL = 0;
 
-        public static final double CLAW_POWER = -0.4;
+        public static final double CLAW_POWER = -0.125;
         public static final double ROLLERS_POWER = 0.3;
     }
 
@@ -93,8 +94,8 @@ public class Consts {
 
     public class JoysticksConsts {
         public static final int OPERATOR = 2,
-                                LEFT_JOYSTICK = 1,
-                                RIGHT_JOYSTICK = 0;
+                LEFT_JOYSTICK = 1,
+                RIGHT_JOYSTICK = 0;
 
     }
 }

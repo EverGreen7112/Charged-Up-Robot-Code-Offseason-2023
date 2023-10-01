@@ -9,6 +9,11 @@ public class RollersOutside extends CommandBase {
         Claw.getIntance().rollOutside();
     }
 
+    @Override
+    public boolean isFinished() {
+        return true;
+    }
+
     public void end() {
         Claw.getIntance().stopRollers();
     }

@@ -5,7 +5,8 @@ import frc.robot.Subsystems.Claw;
 
 public class Open extends CommandBase {
 
-    public void initialize() {
+    @Override
+    public void execute() {
         if (Claw.getlimitSwitchOpenBool()) {
             Claw.getIntance().open();
         }
