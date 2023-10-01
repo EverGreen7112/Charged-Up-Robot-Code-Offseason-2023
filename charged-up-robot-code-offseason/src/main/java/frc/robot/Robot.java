@@ -4,22 +4,12 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.Utils.Consts;
-import frc.robot.Commands.Chassis.Balance;
-import frc.robot.Commands.Chassis.DriveUntilTilted;
-import frc.robot.Commands.Chassis.driveMeter;
 import frc.robot.Subsystems.Arm;
-import frc.robot.Subsystems.Chassis;
-import frc.robot.Subsystems.Arm.ArmNumber;
-import frc.robot.Commands.Open;
 import frc.robot.Commands.Arm.MoveBothArms;
-import frc.robot.Subsystems.Claw;
 
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
@@ -75,10 +65,11 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     // cmd.schedule();
-  } 
+  }
 
   @Override
   public void teleopPeriodic() {
+
   }
 
   @Override
