@@ -6,6 +6,7 @@ import frc.robot.Subsystems.Claw;
 public class RollersInside extends CommandBase {
 
     public void initialize() {
+        addRequirements(Claw.getIntance());
         Claw.getIntance().rollInside();
     }
 

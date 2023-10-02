@@ -6,6 +6,8 @@ import frc.robot.Subsystems.Claw;
 public class CloseToCube extends CommandBase {
 
     public void initialize() {
+        addRequirements(Claw.getIntance());
+
         if (Claw.getlimitSwitchCubeBool()) {
             Claw.getIntance().close();
         }

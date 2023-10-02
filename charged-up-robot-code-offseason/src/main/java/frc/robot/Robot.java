@@ -10,7 +10,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Subsystems.Arm;
 import frc.robot.Subsystems.Chassis;
+import frc.robot.Subsystems.Claw;
+import frc.robot.Subsystems.Arm.ArmNumber;
 import frc.robot.Utils.KeyboardReader;
+import frc.robot.Commands.Arm.MoveArmByAngle;
 import frc.robot.Commands.Arm.MoveBothArms;
 
 public class Robot extends TimedRobot {
@@ -21,6 +24,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_robotContainer = new RobotContainer();
+    Claw.getIntance();
     Chassis.getInstance();
   }
 
@@ -30,8 +34,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("first angle", Arm.getInstance().getFirstAngle());
     SmartDashboard.putNumber("second angle", Arm.getInstance().getSecondAngle());
 
-    SmartDashboard.putNumber("elftJoioystick", RobotContainer.left.getY());
-    SmartDashboard.putNumber("rightJoioystick", RobotContainer.right.getY());
+    SmartDashboard.putBoolean("open", !Claw.getlimitSwitchOpenBool());
+    SmartDashboard.putBoolean("close to cone", !Claw.getlimitSwitchConeBool());
+    SmartDashboard.putBoolean("close to cube", !Claw.getlimitSwitchCubeBool());
   }
 
   @Override
@@ -70,7 +75,9 @@ public class Robot extends TimedRobot {
     }
 
     // drive with joysticks
-    RobotContainer.chassisDrive.schedule();
+    // RobotContainer.chassisDrive.schedule();
+    new MoveBothArms(-90, 180).schedule();
+    ;
   }
 
   @Override

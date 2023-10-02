@@ -6,6 +6,8 @@ import frc.robot.Subsystems.Claw;
 public class CloseToCone extends CommandBase {
 
     public void initialize() {
+        addRequirements(Claw.getIntance());
+
         if (Claw.getlimitSwitchConeBool()) {
             Claw.getIntance().close();
         }

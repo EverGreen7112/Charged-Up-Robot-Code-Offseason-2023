@@ -26,11 +26,10 @@ public class Claw extends SubsystemBase {
         m_clawMotor = new TalonSRX(Consts.ClawConsts.CLAW_MOTOR_ID);
         m_clawLeftRollers = new CANSparkMax(Consts.ClawConsts.CLAW_LEFT_ROLLERS_ID, MotorType.kBrushless);
         m_clawRightRollers = new CANSparkMax(Consts.ClawConsts.CLAW_RIGHT_ROLLERS_ID, MotorType.kBrushless);
-        // m_limitSwitchOpen = new DigitalInput(Consts.ClawConsts.OPEN_SENSOR_CHANNEL);
-        // m_limitSwitchCube = new
-        // DigitalInput(Consts.ClawConsts.CLOSE_TO_CUBE_SENSOR_CHANNEL);
-        // m_limitSwitchCone = new
-        // DigitalInput(Consts.ClawConsts.CLOSE_TO_CONE_SENSOR_CHANNEL);
+
+        m_limitSwitchOpen = new DigitalInput(Consts.ClawConsts.OPEN_SENSOR_CHANNEL);
+        m_limitSwitchCube = new DigitalInput(Consts.ClawConsts.CLOSE_TO_CUBE_SENSOR_CHANNEL);
+        m_limitSwitchCone = new DigitalInput(Consts.ClawConsts.CLOSE_TO_CONE_SENSOR_CHANNEL);
 
         m_clawLeftRollers.setIdleMode(IdleMode.kBrake);
         m_clawRightRollers.setIdleMode(IdleMode.kBrake);
@@ -71,18 +70,15 @@ public class Claw extends SubsystemBase {
     }
 
     public static Boolean getlimitSwitchOpenBool() {
-        // return m_limitSwitchOpen.get();
-        return true;
+        return m_limitSwitchOpen.get();
     }
 
     public static Boolean getlimitSwitchCubeBool() {
-        // return m_limitSwitchCube.get();
-        return true;
+        return m_limitSwitchCube.get();
     }
 
     public static Boolean getlimitSwitchConeBool() {
-        // return m_limitSwitchCone.get();
-        return true;
+        return m_limitSwitchCone.get();
     }
 
 }

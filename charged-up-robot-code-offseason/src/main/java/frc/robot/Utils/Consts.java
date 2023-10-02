@@ -25,8 +25,17 @@ public class Consts {
 
         public static final double PITCH_ANGLE_THRESHOLD = 2;
 
-        public static final double BALANCE_KP = 0;
-        public static final double BALANCE_KF = 0;
+        public final static double ROTATE_KP = 0.05 / 40;
+        public final static double ROTATE_KI = 0.001 / 20;
+        public final static double ROTATE_KD = 0.003 / 20;
+        public final static double ROTATE_P_TOLERANCE = 2;
+        public final static double ROTATE_V_TOLERANCE = 10;
+
+        public final static double DRIVE_KP = 0;
+        public final static double DRIVE_KI = 0;
+        public final static double DRIVE_KD = 0;
+
+        public final static double BALANCE_COMMAND_TOLERANCE = 0;
 
         public static final double TILTED_THRESH_HOLD = 1;
         public static final double DRIVE_UNTIL_TILTED_SPEED = 0.1;
@@ -46,18 +55,20 @@ public class Consts {
         public static final double MAX_SECOND_ANGLE_RANGE = 180; // max angle the second arm can move to
         public static final double MIN_SECOND_ANGLE_RANGE = -180; // min angle the second arm can move to
 
-        public static final double FIRST_ARM_KP = 0.00;
+        public static final double FIRST_ARM_KP = 0.013;
         public static final double FIRST_ARM_KI = 0;
-        public static final double FIRST_ARM_KD = 0;// 0.025;
-        public static final double FIRST_ARM_KF = 0.00075;
+        public static final double FIRST_ARM_KD = 0;
+        public static final double FIRST_ARM_KF = 0.000948;
 
-        public static final double SECOND_ARM_KP = 0.006;
+        public static final double SECOND_ARM_KP = 0.004;
         public static final double SECOND_ARM_KI = 0;
         public static final double SECOND_ARM_KD = 0;
-        public static final double SECOND_ARM_KF = 0;
+        public static final double SECOND_ARM_KF = 0.00015;
 
-        public static final double SECOND_ARM_OPEN_ANGLE_THRESHOLD = 10; // threshold to start moving second arm (in
-                                                                         // degrees)
+        public static final double SECOND_ARM_OPEN_ANGLE_THRESHOLD = 4; // threshold to start moving second arm (in
+                                                                        // degrees)
+        public static final double FIRST_ARM_OPEN_ANGLE_THRESHOLD = 4; // threshold for first arm to start moving (in
+                                                                       // degrees)
     }
 
     public class ClawConsts {
@@ -65,11 +76,11 @@ public class Consts {
         public static final int CLAW_LEFT_ROLLERS_ID = 10;
         public static final int CLAW_RIGHT_ROLLERS_ID = 21;
 
-        public static final int OPEN_SENSOR_CHANNEL = 0;
-        public static final int CLOSE_TO_CUBE_SENSOR_CHANNEL = 0;
-        public static final int CLOSE_TO_CONE_SENSOR_CHANNEL = 0;
+        public static final int OPEN_SENSOR_CHANNEL = 6;
+        public static final int CLOSE_TO_CUBE_SENSOR_CHANNEL = 9;
+        public static final int CLOSE_TO_CONE_SENSOR_CHANNEL = 8;
 
-        public static final double CLAW_POWER = -0.125;
+        public static final double CLAW_POWER = -0.2;
         public static final double ROLLERS_POWER = 0.3;
     }
 
