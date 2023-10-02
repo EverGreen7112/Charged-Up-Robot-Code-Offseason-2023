@@ -75,7 +75,7 @@ public class Robot extends TimedRobot {
     }
 
     // drive with joysticks
-    // RobotContainer.chassisDrive.schedule();
+    RobotContainer.chassisDrive.schedule();
 
     ;
   }

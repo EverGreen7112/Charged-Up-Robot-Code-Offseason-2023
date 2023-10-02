@@ -25,12 +25,16 @@ public class ChassisDrive extends CommandBase {
 
   @Override
   public void execute() {
+    if ((Math.abs(m_leftMotorSpeed.get()) < Consts.ChassisConsts.JOYSTICK_THRESHOLD)
+        && (Math.abs(m_rightMotorSpeed.get()) < Consts.ChassisConsts.JOYSTICK_THRESHOLD)) {
+      Chassis.getInstance().stop();
+      return;
+    }
 
     Chassis.getInstance().driveTank(m_leftMotorSpeed.get() * Consts.ChassisConsts.SPEED,
         m_rightMotorSpeed.get() * Consts.ChassisConsts.SPEED);
     SmartDashboard.putNumber("right", m_leftMotorSpeed.get() * Consts.ChassisConsts.SPEED);
     SmartDashboard.putNumber("left", m_rightMotorSpeed.get() * Consts.ChassisConsts.SPEED);
-
   }
 
   @Override

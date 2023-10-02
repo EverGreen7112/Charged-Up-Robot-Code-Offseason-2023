@@ -105,8 +105,8 @@ public class Consts {
 
     public class JoysticksConsts {
         public static final int OPERATOR = 2,
-                LEFT_JOYSTICK = 1,
-                RIGHT_JOYSTICK = 0;
+                LEFT_JOYSTICK = 0,
+                RIGHT_JOYSTICK = 1;
 
     }
 }
