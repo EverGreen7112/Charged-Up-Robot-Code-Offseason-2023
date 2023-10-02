@@ -58,26 +58,6 @@ public class RobotContainer {
     // Claw.getIntance().stop();
     // }, Claw.getIntance()));
 
-<<<<<<< HEAD
-    // Trigger open = new JoystickButton(m_operator,
-    // Consts.ButtonPorts.A).onTrue(new Open());
-    // Trigger closeToCube = new JoystickButton(m_operator,
-    // Consts.ButtonPorts.B).onTrue(new CloseToCube());
-    // Trigger closeToCone = new JoystickButton(m_operator,
-    // Consts.ButtonPorts.X).onTrue(new CloseToCone());
-
-    // Trigger roll = new JoystickButton(m_operator,
-    // Consts.ButtonPorts.RB).whileTrue(new RollersInside());
-    // Trigger rollin = new JoystickButton(m_operator,
-    // Consts.ButtonPorts.LB).whileTrue(new RollersOutside());
-
-    // Trigger left = new JoystickButton(m_operator,
-    // Consts.ButtonPorts.LT).onTrue(new MoveBothArms(-90, 90));
-    // Trigger right = new JoystickButton(m_operator,
-    // Consts.ButtonPorts.RT).onTrue(new MoveBothArms(90, -90));
-    // Trigger zero = new JoystickButton(m_operator,
-    // Consts.ButtonPorts.START).onTrue(new MoveBothArms(0, 0));
-=======
     Trigger open = new JoystickButton(m_operator, Consts.ButtonPorts.B).onTrue(new Open());
     Trigger closeToCube = new JoystickButton(m_operator, Consts.ButtonPorts.X).onTrue(new CloseToCube());
     Trigger closeToCone = new JoystickButton(m_operator, Consts.ButtonPorts.Y).onTrue(new CloseToCone());
@@ -89,7 +69,6 @@ public class RobotContainer {
     Trigger left = new JoystickButton(m_operator, Consts.ButtonPorts.LT).onTrue(new MoveBothArms(-90, 180));
     Trigger right = new JoystickButton(m_operator, Consts.ButtonPorts.RT).onTrue(new MoveBothArms(90, -90));
     Trigger zero = new JoystickButton(m_operator, Consts.ButtonPorts.START).onTrue(new MoveBothArms(0, 0));
->>>>>>> develop
   }
 
   public Command getAutonomousCommand() {
