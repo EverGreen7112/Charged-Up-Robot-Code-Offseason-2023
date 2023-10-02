@@ -24,7 +24,9 @@ public class Consts {
         public static final double MOVE_KD = 0;
 
         public static final double PITCH_ANGLE_THRESHOLD = 2;
+        
 
+        //for old commands
         public final static double ROTATE_KP = 0.05 / 40;
         public final static double ROTATE_KI = 0.001 / 20;
         public final static double ROTATE_KD = 0.003 / 20;
@@ -36,10 +38,12 @@ public class Consts {
         public final static double DRIVE_KD = 0;
 
         public final static double BALANCE_COMMAND_TOLERANCE = 0;
-
+        //
         public static final double TILTED_THRESH_HOLD = 1;
         public static final double DRIVE_UNTIL_TILTED_SPEED = 0.1;
 
+        public static final double BALANCE_KP = 0;
+        public static final double BALANCE_KF = 0;
     }
 
     public class ArmConsts {
