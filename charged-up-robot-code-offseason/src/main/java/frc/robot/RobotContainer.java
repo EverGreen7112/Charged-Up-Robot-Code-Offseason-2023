@@ -15,6 +15,7 @@ import frc.robot.Commands.CloseToCube;
 import frc.robot.Commands.Open;
 import frc.robot.Commands.RollersInside;
 import frc.robot.Commands.RollersOutside;
+import frc.robot.Commands.Arm.MoveBothArms;
 import frc.robot.Commands.Chassis.Balance;
 import frc.robot.Commands.Chassis.ChassisDrive;
 import frc.robot.Subsystems.Claw;
@@ -62,6 +63,10 @@ public class RobotContainer {
 
     Trigger roll = new JoystickButton(m_operator, Consts.ButtonPorts.RB).whileTrue(new RollersInside());
     Trigger rollin = new JoystickButton(m_operator, Consts.ButtonPorts.LB).whileTrue(new RollersOutside());
+
+    Trigger left = new JoystickButton(m_operator, Consts.ButtonPorts.LT).onTrue(new MoveBothArms(-90, 90));
+    Trigger right = new JoystickButton(m_operator, Consts.ButtonPorts.RT).onTrue(new MoveBothArms(90, -90));
+    Trigger zero = new JoystickButton(m_operator, Consts.ButtonPorts.START).onTrue(new MoveBothArms(0, 0));
   }
 
   public Command getAutonomousCommand() {

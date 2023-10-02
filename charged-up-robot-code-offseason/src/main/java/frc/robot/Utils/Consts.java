@@ -60,14 +60,14 @@ public class Consts {
         public static final double FIRST_ARM_KD = 0;
         public static final double FIRST_ARM_KF = 0.000948;
 
-        public static final double SECOND_ARM_KP = 0.004;
+        public static final double SECOND_ARM_KP = 0.0055;
         public static final double SECOND_ARM_KI = 0;
         public static final double SECOND_ARM_KD = 0;
-        public static final double SECOND_ARM_KF = 0.00015;
+        public static final double SECOND_ARM_KF = 0.0015;
 
         public static final double SECOND_ARM_OPEN_ANGLE_THRESHOLD = 4; // threshold to start moving second arm (in
                                                                         // degrees)
-        public static final double FIRST_ARM_OPEN_ANGLE_THRESHOLD = 4; // threshold for first arm to start moving (in
+        public static final double FIRST_ARM_OPEN_ANGLE_THRESHOLD = 8; // threshold for first arm to start moving (in
                                                                        // degrees)
     }
 
