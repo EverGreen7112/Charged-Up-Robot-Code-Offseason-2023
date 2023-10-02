@@ -33,6 +33,8 @@ public class Claw extends SubsystemBase {
 
         m_clawLeftRollers.setIdleMode(IdleMode.kBrake);
         m_clawRightRollers.setIdleMode(IdleMode.kBrake);
+
+        m_clawLeftRollers.setInverted(true);
     }
 
     public static Claw getIntance() {
@@ -54,14 +56,9 @@ public class Claw extends SubsystemBase {
         m_clawMotor.set(ControlMode.PercentOutput, 0);
     }
 
-    public void rollInside() {
-        m_clawLeftRollers.set(Consts.ClawConsts.ROLLERS_POWER);
-        m_clawRightRollers.set(Consts.ClawConsts.ROLLERS_POWER);
-    }
-
-    public void rollOutside() {
-        m_clawLeftRollers.set(-Consts.ClawConsts.ROLLERS_POWER);
-        m_clawRightRollers.set(Consts.ClawConsts.ROLLERS_POWER);
+    public void rollInside(double power) {
+        m_clawLeftRollers.set(power);
+        m_clawRightRollers.set(power);
     }
 
     public void stopRollers() {

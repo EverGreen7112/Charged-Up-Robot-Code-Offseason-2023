@@ -10,14 +10,15 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.Commands.CloseToCone;
-import frc.robot.Commands.CloseToCube;
-import frc.robot.Commands.Open;
-import frc.robot.Commands.RollersInside;
-import frc.robot.Commands.RollersOutside;
 import frc.robot.Commands.Arm.MoveBothArms;
 import frc.robot.Commands.Chassis.Balance;
 import frc.robot.Commands.Chassis.ChassisDrive;
+import frc.robot.Commands.Claw.CloseToCone;
+import frc.robot.Commands.Claw.CloseToCube;
+import frc.robot.Commands.Claw.HoldGamePiece;
+import frc.robot.Commands.Claw.Open;
+import frc.robot.Commands.Claw.RollersInside;
+import frc.robot.Commands.Claw.RollersOutside;
 import frc.robot.Subsystems.Claw;
 import frc.robot.Utils.Consts;
 
@@ -57,6 +58,7 @@ public class RobotContainer {
     // Claw.getIntance().stop();
     // }, Claw.getIntance()));
 
+<<<<<<< HEAD
     // Trigger open = new JoystickButton(m_operator,
     // Consts.ButtonPorts.A).onTrue(new Open());
     // Trigger closeToCube = new JoystickButton(m_operator,
@@ -75,6 +77,19 @@ public class RobotContainer {
     // Consts.ButtonPorts.RT).onTrue(new MoveBothArms(90, -90));
     // Trigger zero = new JoystickButton(m_operator,
     // Consts.ButtonPorts.START).onTrue(new MoveBothArms(0, 0));
+=======
+    Trigger open = new JoystickButton(m_operator, Consts.ButtonPorts.B).onTrue(new Open());
+    Trigger closeToCube = new JoystickButton(m_operator, Consts.ButtonPorts.X).onTrue(new CloseToCube());
+    Trigger closeToCone = new JoystickButton(m_operator, Consts.ButtonPorts.Y).onTrue(new CloseToCone());
+
+    Trigger rollIn = new JoystickButton(m_operator, Consts.ButtonPorts.RB).whileTrue(new RollersInside());
+    Trigger rollOut = new JoystickButton(m_operator, Consts.ButtonPorts.LB).whileTrue(new RollersOutside());
+    Trigger holdGamePiece = new JoystickButton(m_operator, Consts.ButtonPorts.A).whileTrue(new HoldGamePiece());
+
+    Trigger left = new JoystickButton(m_operator, Consts.ButtonPorts.LT).onTrue(new MoveBothArms(-90, 180));
+    Trigger right = new JoystickButton(m_operator, Consts.ButtonPorts.RT).onTrue(new MoveBothArms(90, -90));
+    Trigger zero = new JoystickButton(m_operator, Consts.ButtonPorts.START).onTrue(new MoveBothArms(0, 0));
+>>>>>>> develop
   }
 
   public Command getAutonomousCommand() {

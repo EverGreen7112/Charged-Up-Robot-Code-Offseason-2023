@@ -60,10 +60,10 @@ public class Consts {
         public static final double FIRST_ARM_KD = 0;
         public static final double FIRST_ARM_KF = 0.000948;
 
-        public static final double SECOND_ARM_KP = 0.0055;
-        public static final double SECOND_ARM_KI = 0;
-        public static final double SECOND_ARM_KD = 0;
-        public static final double SECOND_ARM_KF = 0.0015;
+        public static final double SECOND_ARM_KP = 0.0075; //0.0055
+        public static final double SECOND_ARM_KI = 0.000001;
+        public static final double SECOND_ARM_KD = 0.0002;
+        public static final double SECOND_ARM_KF = 0.00; //0.002
 
         public static final double SECOND_ARM_OPEN_ANGLE_THRESHOLD = 4; // threshold to start moving second arm (in
                                                                         // degrees)
@@ -80,8 +80,9 @@ public class Consts {
         public static final int CLOSE_TO_CUBE_SENSOR_CHANNEL = 9;
         public static final int CLOSE_TO_CONE_SENSOR_CHANNEL = 8;
 
-        public static final double CLAW_POWER = -0.2;
+        public static final double CLAW_POWER = -0.3;
         public static final double ROLLERS_POWER = 0.3;
+        public static final double HOLD_GAME_PIECE_POWER = 0.05;
     }
 
     public static class ButtonPorts {
