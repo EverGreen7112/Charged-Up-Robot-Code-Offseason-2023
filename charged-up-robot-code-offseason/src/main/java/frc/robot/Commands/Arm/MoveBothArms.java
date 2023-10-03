@@ -34,12 +34,11 @@ public class MoveBothArms extends CommandBase {
 
     @Override
     public void execute() {
-        if (Math.abs(Arm.getInstance().getSecondAngle()) < Consts.ArmConsts.FIRST_ARM_OPEN_ANGLE_THRESHOLD) {
+        if (Math.abs(Arm.getInstance().getSecondAngle()) < Consts.ArmConsts.SECOND_ARM_OPEN_ANGLE_THRESHOLD) {
             Arm.getInstance().turnFirstTo(m_firstTargetAngle);
         }
         // start moving the second arm in threshold
-        if (Math.abs(m_firstTargetAngle
-                - Arm.getInstance().getFirstAngle()) < Consts.ArmConsts.SECOND_ARM_OPEN_ANGLE_THRESHOLD) {
+        if (Math.abs(m_firstTargetAngle - Arm.getInstance().getFirstAngle()) < Consts.ArmConsts.SECOND_ARM_OPEN_ANGLE_THRESHOLD) {
             Arm.getInstance().turnSecondTo(m_secondTargetAngle);
         } else {
             Arm.getInstance().turnSecondTo(0);

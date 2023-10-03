@@ -63,17 +63,17 @@ public class Consts {
         public static final double MAX_SECOND_ANGLE_RANGE = 250; // max angle the second arm can move to
         public static final double MIN_SECOND_ANGLE_RANGE = -250; // min angle the second arm can move to
 
-        public static final double FIRST_ARM_KP = 0.013;
+        public static final double FIRST_ARM_KP = 0.014;
         public static final double FIRST_ARM_KI = 0;
         public static final double FIRST_ARM_KD = 0;
-        public static final double FIRST_ARM_KF = 0.000948;
+        public static final double FIRST_ARM_KF = 0.000955;
 
-        public static final double SECOND_ARM_KP = 0.0075; //0.0055
-        public static final double SECOND_ARM_KI = 0.000003;
-        public static final double SECOND_ARM_KD = 0.0003;
-        public static final double SECOND_ARM_KF = 0.00; //0.002
+        public static final double SECOND_ARM_KP = 0.02;
+        public static final double SECOND_ARM_KI = 0.000002;
+        public static final double SECOND_ARM_KD = 0.015; // 0.0003
+        public static final double SECOND_ARM_KF = 0;
 
-        public static final double SECOND_ARM_OPEN_ANGLE_THRESHOLD = 4; // threshold to start moving second arm (in
+        public static final double SECOND_ARM_OPEN_ANGLE_THRESHOLD = 10; // threshold to start moving second arm (in
                                                                         // degrees)
         public static final double FIRST_ARM_OPEN_ANGLE_THRESHOLD = 8; // threshold for first arm to start moving (in
                                                                        // degrees)
@@ -88,8 +88,8 @@ public class Consts {
         public static final int CLOSE_TO_CUBE_SENSOR_CHANNEL = 9;
         public static final int CLOSE_TO_CONE_SENSOR_CHANNEL = 8;
 
-        public static final double CLAW_POWER_CLOSE = -0.3;
-        public static final double CLAW_POWER_OPEN = -0.2;
+        public static final double CLAW_POWER_CLOSE = -0.4;
+        public static final double CLAW_POWER_OPEN = -0.3;
         public static final double ROLLERS_IN_POWER = 0.3;
         public static final double ROLLERS_OUT_POWER = 0.5;
 

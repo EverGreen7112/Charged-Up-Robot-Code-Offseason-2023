@@ -44,7 +44,7 @@ public class Arm extends SubsystemBase {
         m_secondArmMotor.getEncoder().setPositionConversionFactor(Consts.ArmConsts.SECOND_ARM_GEAR_RATIO * 360);
 
         // lock second arm
-        m_secondArmMotor.setIdleMode(IdleMode.kBrake);
+        m_secondArmMotor.setIdleMode(IdleMode.kCoast);
     }
 
     /**
