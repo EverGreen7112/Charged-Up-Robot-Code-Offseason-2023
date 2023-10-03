@@ -6,9 +6,15 @@ import frc.robot.Utils.Consts;
 
 public class RollersOutside extends CommandBase {
 
+    private double m_speed;
+
+    public RollersOutside(double speed){
+        m_speed = speed;
+    }
+
     public void initialize() {
         addRequirements(Claw.getIntance());
-        Claw.getIntance().rollInside(-Consts.ClawConsts.ROLLERS_POWER);
+        Claw.getIntance().roll(-m_speed);
     }
 
     @Override

@@ -13,6 +13,7 @@ public class Consts {
         public static final double JOYSTICK_THRESHOLD = 0.2;
         public static final double DISTANCE_PER_ROTATION = 2 * Math.PI * 0.076; // wheel perimeter(in meters)
         public static final double CHASSIS_WHEEL_GEAR_RATIO = 1 / 4.128326627;
+        public static final double DISTANCE_PER_TICK = 1 / 22.3;
 
         public static final double DRIVE_METERS_THRESHOLD = 0.1;
         public static final double TURN_ANGLE_THRESHOLD = 2;
@@ -20,30 +21,33 @@ public class Consts {
         public static final double TURN_KP = 0;
         public static final double TURN_KD = 0;
 
-        public static final double MOVE_KP = 0;
-        public static final double MOVE_KD = 0;
+        public static final double MAX_TILTED = 20;
+        public static final double MIN_TILTED = 16;
+        public static final double DRIVE_UNTIL_TILTED_SPEED = 0.2;
 
-        public static final double PITCH_ANGLE_THRESHOLD = 2;
+        public static final double MOVE_KP = 0.01;
+        public static final double MOVE_KD = 0.01;
+
+        public static final double MIN_BALANCE_THRESHOLD = 2;
+        public static final double MAX_BALANCE_THRESHOLD = 5;
+
+        public static final double BALANCE_KP = 0.0000001;
+        public static final double BALANCE_KF = 0.1;
         
-
         //for old commands
         public final static double ROTATE_KP = 0.05 / 40;
         public final static double ROTATE_KI = 0.001 / 20;
         public final static double ROTATE_KD = 0.003 / 20;
+
         public final static double ROTATE_P_TOLERANCE = 2;
         public final static double ROTATE_V_TOLERANCE = 10;
 
-        public final static double DRIVE_KP = 0;
+        public final static double DRIVE_KP = 0.25;
         public final static double DRIVE_KI = 0;
         public final static double DRIVE_KD = 0;
 
-        public final static double BALANCE_COMMAND_TOLERANCE = 0;
+        public final static double BALANCE_COMMAND_TOLERANCE = 1;
         //
-        public static final double TILTED_THRESH_HOLD = 1;
-        public static final double DRIVE_UNTIL_TILTED_SPEED = 0.1;
-
-        public static final double BALANCE_KP = 0;
-        public static final double BALANCE_KF = 0;
     }
 
     public class ArmConsts {
@@ -56,8 +60,8 @@ public class Consts {
         public static final double MAX_FIRST_ANGLE_RANGE = 170; // max angle the first arm can move to
         public static final double MIN_FIRST_ANGLE_RANGE = -170; // min angle the first arm can move to
 
-        public static final double MAX_SECOND_ANGLE_RANGE = 180; // max angle the second arm can move to
-        public static final double MIN_SECOND_ANGLE_RANGE = -180; // min angle the second arm can move to
+        public static final double MAX_SECOND_ANGLE_RANGE = 250; // max angle the second arm can move to
+        public static final double MIN_SECOND_ANGLE_RANGE = -250; // min angle the second arm can move to
 
         public static final double FIRST_ARM_KP = 0.013;
         public static final double FIRST_ARM_KI = 0;
@@ -65,8 +69,8 @@ public class Consts {
         public static final double FIRST_ARM_KF = 0.000948;
 
         public static final double SECOND_ARM_KP = 0.0075; //0.0055
-        public static final double SECOND_ARM_KI = 0.000001;
-        public static final double SECOND_ARM_KD = 0.0002;
+        public static final double SECOND_ARM_KI = 0.000003;
+        public static final double SECOND_ARM_KD = 0.0003;
         public static final double SECOND_ARM_KF = 0.00; //0.002
 
         public static final double SECOND_ARM_OPEN_ANGLE_THRESHOLD = 4; // threshold to start moving second arm (in
@@ -84,9 +88,15 @@ public class Consts {
         public static final int CLOSE_TO_CUBE_SENSOR_CHANNEL = 9;
         public static final int CLOSE_TO_CONE_SENSOR_CHANNEL = 8;
 
-        public static final double CLAW_POWER = -0.3;
-        public static final double ROLLERS_POWER = 0.3;
-        public static final double HOLD_GAME_PIECE_POWER = 0.05;
+        public static final double CLAW_POWER_CLOSE = -0.3;
+        public static final double CLAW_POWER_OPEN = -0.2;
+        public static final double ROLLERS_IN_POWER = 0.3;
+        public static final double ROLLERS_OUT_POWER = 0.5;
+
+        public static final double ROLLERS_MID_AUTO = 0.5;
+        public static final double ROLLERS_HIGH_AUTO = 0.8;
+
+        public static final double HOLD_GAME_PIECE_POWER = 0.15;
     }
 
     public static class ButtonPorts {
@@ -109,7 +119,8 @@ public class Consts {
     }
 
     public class JoysticksConsts {
-        public static final int OPERATOR = 2,
+        public static final int 
+                OPERATOR = 2,
                 LEFT_JOYSTICK = 0,
                 RIGHT_JOYSTICK = 1;
 

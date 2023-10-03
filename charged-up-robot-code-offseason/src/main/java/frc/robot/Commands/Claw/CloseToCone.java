@@ -5,6 +5,7 @@ import frc.robot.Subsystems.Claw;
 
 public class CloseToCone extends CommandBase {
 
+    @Override
     public void initialize() {
         addRequirements(Claw.getIntance());
 
@@ -13,6 +14,7 @@ public class CloseToCone extends CommandBase {
         }
     }
 
+    @Override
     public boolean isFinished() {
         return !Claw.getlimitSwitchConeBool();
     }

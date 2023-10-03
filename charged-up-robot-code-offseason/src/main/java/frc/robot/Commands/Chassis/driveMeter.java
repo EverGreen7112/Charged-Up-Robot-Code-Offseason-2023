@@ -10,23 +10,23 @@ public class driveMeter extends CommandBase { // CR_NOTE: driveMeter is not a me
 
     private double m_lastTraveldRightMeters = Chassis.getInstance().getRightChassisMeters();
     private double m_lastTraveldLeftMeters = Chassis.getInstance().getLeftChassisMeters();
+    public static double currentRightMeters;
+    public static double currentLeftMeters;
 
     public driveMeter(double targetMeters) {
         m_targetRightMeters = targetMeters + Chassis.getInstance().getRightChassisMeters();
         m_targetLeftMeters = targetMeters + Chassis.getInstance().getLeftChassisMeters();
-
     }
 
     @Override
     public void initialize() {
         addRequirements(Chassis.getInstance());
-
     }
 
     @Override
     public void execute() {
-        double currentRightMeters = Chassis.getInstance().getRightChassisMeters();
-        double currentLeftMeters = Chassis.getInstance().getLeftChassisMeters();
+         currentRightMeters = Chassis.getInstance().getRightChassisMeters();
+         currentLeftMeters = Chassis.getInstance().getLeftChassisMeters();
 
         double rP = m_targetRightMeters - currentRightMeters;
         double lP = m_targetLeftMeters - currentLeftMeters;

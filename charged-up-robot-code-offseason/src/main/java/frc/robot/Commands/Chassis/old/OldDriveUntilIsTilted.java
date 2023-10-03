@@ -6,10 +6,15 @@ import frc.robot.Subsystems.Chassis;
 import frc.robot.Utils.Consts;
 import frc.robot.Utils.Vector2d;
 
-public class DriveUntilIsTilted extends CommandBase {
+public class OldDriveUntilIsTilted extends CommandBase {
 
     PIDController _anglePID;
     double _initYaw;
+    int dir;
+
+    public OldDriveUntilIsTilted(int dir){
+        this.dir = dir;
+    }
 
     @Override
     public void initialize() {
@@ -20,7 +25,7 @@ public class DriveUntilIsTilted extends CommandBase {
 
     @Override
     public void execute() {
-        double speed = 0.45;
+        double speed = dir * 0.45;
         double angleSpeed = _anglePID.calculate(Chassis.getInstance().getNavX().getAngle(), _initYaw);
         Vector2d v = new Vector2d(speed + angleSpeed, speed - angleSpeed);
         v.normalise();
@@ -29,6 +34,6 @@ public class DriveUntilIsTilted extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return Math.abs(Chassis.getInstance().getNavX().getRoll()) > 11;
+        return Math.abs(Chassis.getInstance().getNavX().getRoll()) > 16;
     }
 }

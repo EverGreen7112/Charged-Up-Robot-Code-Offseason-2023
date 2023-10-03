@@ -7,7 +7,7 @@ import frc.robot.Utils.Consts;
 public class HoldGamePiece extends CommandBase{
     public void initialize() {
         addRequirements(Claw.getIntance());
-        Claw.getIntance().rollInside(Consts.ClawConsts.HOLD_GAME_PIECE_POWER);
+        Claw.getIntance().roll(Consts.ClawConsts.HOLD_GAME_PIECE_POWER);
     }
 
     @Override
@@ -17,6 +17,6 @@ public class HoldGamePiece extends CommandBase{
 
     @Override
     public void end(boolean interrupted) {
-        Claw.getIntance().stopRollers();
+        // Claw.getIntance().stopRollers();
     }
 }

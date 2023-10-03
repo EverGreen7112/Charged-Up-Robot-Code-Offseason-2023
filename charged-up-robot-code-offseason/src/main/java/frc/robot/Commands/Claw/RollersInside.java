@@ -8,7 +8,7 @@ public class RollersInside extends CommandBase {
 
     public void initialize() {
         addRequirements(Claw.getIntance());
-        Claw.getIntance().rollInside(Consts.ClawConsts.ROLLERS_POWER);
+        Claw.getIntance().roll(Consts.ClawConsts.ROLLERS_IN_POWER);
     }
 
     @Override

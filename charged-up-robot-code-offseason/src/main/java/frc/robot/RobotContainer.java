@@ -8,13 +8,20 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Commands.Arm.MoveBothArms;
 import frc.robot.Commands.Chassis.Balance;
 import frc.robot.Commands.Chassis.ChassisDrive;
+import frc.robot.Commands.Chassis.DriveUntilTilted;
+import frc.robot.Commands.Chassis.driveMeter;
+import frc.robot.Commands.Chassis.old.DriveDistanceByEncoders;
+import frc.robot.Commands.Chassis.old.OldBalance;
+import frc.robot.Commands.Chassis.old.OldDriveUntilIsTilted;
 import frc.robot.Commands.Claw.CloseToCone;
-import frc.robot.Commands.Claw.CloseToCube;
+import frc.robot.Commands.Claw.OpenToCube;
 import frc.robot.Commands.Claw.HoldGamePiece;
 import frc.robot.Commands.Claw.Open;
 import frc.robot.Commands.Claw.RollersInside;
@@ -36,42 +43,43 @@ public class RobotContainer {
         return right.getY() * -1;
       });
 
-  public static Balance balance = new Balance();
+  public static DriveUntilTilted driveUntilTilted = new DriveUntilTilted();
+  public static DriveDistanceByEncoders driveMeters = new DriveDistanceByEncoders(1, 0.1);
+
+  // only balance
+  public static SequentialCommandGroup balance = new SequentialCommandGroup(new OldDriveUntilIsTilted(-1),
+      new OldBalance());
+  // throw cube and balance
+  public static SequentialCommandGroup throwAndBalance = new SequentialCommandGroup(
+      new MoveBothArms(-32, -46).withTimeout(2),
+      new ParallelCommandGroup(new RollersOutside(Consts.ClawConsts.ROLLERS_HIGH_AUTO), new MoveBothArms(-32, -46))
+          .withTimeout(0.5),
+      new ParallelCommandGroup(new CloseToCone(), new MoveBothArms(0, 0).withTimeout(1)), new OldDriveUntilIsTilted(-1),
+      new OldBalance());
 
   public RobotContainer() {
     configureBindings();
   }
 
   private void configureBindings() {
-    // Trigger open = new JoystickButton(m_operator,
-    // Consts.ButtonPorts.A).whileTrue(new InstantCommand(() -> {
-    // Claw.getIntance().open();
-    // }));
 
-    // Trigger close = new JoystickButton(m_operator,
-    // Consts.ButtonPorts.B).whileTrue(new InstantCommand(() -> {
-    // Claw.getIntance().close();
-    // }));
-
-    // Trigger stop = new JoystickButton(m_operator,
-    // Consts.ButtonPorts.X).onTrue(new InstantCommand(() -> {
-    // Claw.getIntance().stop();
-    // }, Claw.getIntance()));
-
-    Trigger open = new JoystickButton(m_operator, Consts.ButtonPorts.B).onTrue(new Open());
-    Trigger closeToCube = new JoystickButton(m_operator, Consts.ButtonPorts.X).onTrue(new CloseToCube());
+    Trigger openToCube = new JoystickButton(m_operator, Consts.ButtonPorts.X).onTrue(new OpenToCube());
     Trigger closeToCone = new JoystickButton(m_operator, Consts.ButtonPorts.Y).onTrue(new CloseToCone());
 
     Trigger rollIn = new JoystickButton(m_operator, Consts.ButtonPorts.RB).whileTrue(new RollersInside());
-    Trigger rollOut = new JoystickButton(m_operator, Consts.ButtonPorts.LB).whileTrue(new RollersOutside());
+    Trigger rollOut = new JoystickButton(m_operator, Consts.ButtonPorts.LB)
+        .whileTrue(new RollersOutside(Consts.ClawConsts.ROLLERS_HIGH_AUTO));
     Trigger holdGamePiece = new JoystickButton(m_operator, Consts.ButtonPorts.A).whileTrue(new HoldGamePiece());
 
-    Trigger left = new JoystickButton(m_operator, Consts.ButtonPorts.LT).onTrue(new MoveBothArms(-90, 180));
-    Trigger right = new JoystickButton(m_operator, Consts.ButtonPorts.RT).onTrue(new MoveBothArms(90, -90));
+    Trigger highThrow = new JoystickButton(m_operator, Consts.ButtonPorts.LT).onTrue(new MoveBothArms(-32, -46));
+    Trigger midThrow = new JoystickButton(m_operator, Consts.ButtonPorts.BACK).onTrue(new MoveBothArms(0, -30));
     Trigger zero = new JoystickButton(m_operator, Consts.ButtonPorts.START).onTrue(new MoveBothArms(0, 0));
+    Trigger pickupShelf = new JoystickButton(m_operator, Consts.ButtonPorts.RT).onTrue(new MoveBothArms(-90, -185));
+    Trigger pickupFloor = new JoystickButton(m_operator, Consts.ButtonPorts.B).onTrue(new MoveBothArms(-7, -125));
+
   }
 
   public Command getAutonomousCommand() {
-    return Commands.print("No autonomous command configured");
+    return RobotContainer.throwAndBalance;
   }
 }

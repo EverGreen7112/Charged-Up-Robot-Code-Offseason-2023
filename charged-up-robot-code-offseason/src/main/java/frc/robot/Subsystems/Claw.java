@@ -31,9 +31,6 @@ public class Claw extends SubsystemBase {
         m_limitSwitchCube = new DigitalInput(Consts.ClawConsts.CLOSE_TO_CUBE_SENSOR_CHANNEL);
         m_limitSwitchCone = new DigitalInput(Consts.ClawConsts.CLOSE_TO_CONE_SENSOR_CHANNEL);
 
-        m_clawLeftRollers.setIdleMode(IdleMode.kBrake);
-        m_clawRightRollers.setIdleMode(IdleMode.kBrake);
-
         m_clawLeftRollers.setInverted(true);
     }
 
@@ -45,20 +42,20 @@ public class Claw extends SubsystemBase {
     }
 
     public void open() {
-        m_clawMotor.set(ControlMode.PercentOutput, Consts.ClawConsts.CLAW_POWER);
+        m_clawMotor.set(ControlMode.PercentOutput, Consts.ClawConsts.CLAW_POWER_OPEN);
     }
 
     public void close() {
-        m_clawMotor.set(ControlMode.PercentOutput, -Consts.ClawConsts.CLAW_POWER);
+        m_clawMotor.set(ControlMode.PercentOutput, -Consts.ClawConsts.CLAW_POWER_CLOSE);
     }
 
     public void stop() {
         m_clawMotor.set(ControlMode.PercentOutput, 0);
     }
 
-    public void rollInside(double power) {
+    public void roll(double power) {
         m_clawLeftRollers.set(power);
-        m_clawRightRollers.set(power);
+        m_clawRightRollers.set(power * 1.3);
     }
 
     public void stopRollers() {

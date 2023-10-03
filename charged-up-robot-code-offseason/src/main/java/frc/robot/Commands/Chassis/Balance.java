@@ -1,11 +1,14 @@
 package frc.robot.Commands.Chassis;
 
+import com.revrobotics.CANSparkMax.IdleMode;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Subsystems.Chassis;
 import frc.robot.Utils.Consts;
 
 public class Balance extends CommandBase {
-    public double lastPitch; 
+    public double lastRoll; 
     public double kFMultiplicator;
     public Balance() {
     }
@@ -13,30 +16,33 @@ public class Balance extends CommandBase {
     @Override
     public void initialize() {
         kFMultiplicator = Consts.ChassisConsts.BALANCE_KF;
-        lastPitch = Chassis.getInstance().getNavX().getRoll();
+        lastRoll = Chassis.getInstance().getNavX().getRoll();
 
         addRequirements(Chassis.getInstance());
     }
 
     @Override
     public void execute() {
-        double currentPitch = Chassis.getInstance().getNavX().getRoll();
-        double p = currentPitch; // target is roll 0
-        Chassis.getInstance().driveTank(p * Consts.ChassisConsts.BALANCE_KP + kFMultiplicator, p * Consts.ChassisConsts.BALANCE_KP + kFMultiplicator);
-        if ((lastPitch > 0 && currentPitch < 0) || (lastPitch < 0 && currentPitch > 0)){
+        SmartDashboard.putBoolean("is in balance", true);
+        double currentRoll = Chassis.getInstance().getNavX().getRoll();
+        double p = currentRoll; // target is roll 0
+        double motorInput = p * Consts.ChassisConsts.BALANCE_KP;
+        Chassis.getInstance().driveTank(motorInput, motorInput);
+        if ((lastRoll > 0 && currentRoll < 0) || (lastRoll < 0 && currentRoll > 0)){
             kFMultiplicator /= 2;
         }
-        lastPitch = currentPitch;
+        lastRoll = currentRoll;
     }
 
     @Override
     public boolean isFinished() {
-        return (Math.abs(Chassis.getInstance().getNavX().getRoll()) < Consts.ChassisConsts.PITCH_ANGLE_THRESHOLD); 
+        return ((Math.abs(Chassis.getInstance().getNavX().getRoll())) < 5);
 
     }
 
     @Override
     public void end(boolean interrupted) {
-        Chassis.getInstance().stop();
+        Chassis.getInstance().driveTank(0, 0);
+        //Chassis.getInstance().setIdleMode(IdleMode.kBrake);
     }
 }
