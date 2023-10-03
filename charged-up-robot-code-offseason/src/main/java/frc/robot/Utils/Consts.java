@@ -33,8 +33,8 @@ public class Consts {
 
         public static final double BALANCE_KP = 0.0000001;
         public static final double BALANCE_KF = 0.1;
-        
-        //for old commands
+
+        // for old commands
         public final static double ROTATE_KP = 0.05 / 40;
         public final static double ROTATE_KI = 0.001 / 20;
         public final static double ROTATE_KD = 0.003 / 20;
@@ -73,7 +73,7 @@ public class Consts {
         public static final double SECOND_ARM_KD = 0.015; // 0.0003
         public static final double SECOND_ARM_KF = 0;
 
-        public static final double SECOND_ARM_OPEN_ANGLE_THRESHOLD = 10; // threshold to start moving second arm (in
+        public static final double SECOND_ARM_OPEN_ANGLE_THRESHOLD = 7; // threshold to start moving second arm (in
                                                                         // degrees)
         public static final double FIRST_ARM_OPEN_ANGLE_THRESHOLD = 8; // threshold for first arm to start moving (in
                                                                        // degrees)
@@ -89,7 +89,7 @@ public class Consts {
         public static final int CLOSE_TO_CONE_SENSOR_CHANNEL = 8;
 
         public static final double CLAW_POWER_CLOSE = -0.4;
-        public static final double CLAW_POWER_OPEN = -0.3;
+        public static final double CLAW_POWER_OPEN = -0.4;
         public static final double ROLLERS_IN_POWER = 0.3;
         public static final double ROLLERS_OUT_POWER = 0.5;
 
@@ -119,8 +119,7 @@ public class Consts {
     }
 
     public class JoysticksConsts {
-        public static final int 
-                OPERATOR = 2,
+        public static final int OPERATOR = 2,
                 LEFT_JOYSTICK = 0,
                 RIGHT_JOYSTICK = 1;
 

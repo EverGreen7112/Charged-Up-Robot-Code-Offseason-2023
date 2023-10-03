@@ -1,6 +1,7 @@
 package frc.robot.Commands.Arm;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Subsystems.Arm;
 import frc.robot.Subsystems.Arm.ArmNumber;
 import frc.robot.Utils.Consts;
@@ -38,11 +39,25 @@ public class MoveBothArms extends CommandBase {
             Arm.getInstance().turnFirstTo(m_firstTargetAngle);
         }
         // start moving the second arm in threshold
-        if (Math.abs(m_firstTargetAngle - Arm.getInstance().getFirstAngle()) < Consts.ArmConsts.SECOND_ARM_OPEN_ANGLE_THRESHOLD) {
+        if (Math.abs(m_firstTargetAngle
+                - Arm.getInstance().getFirstAngle()) < Consts.ArmConsts.SECOND_ARM_OPEN_ANGLE_THRESHOLD) {
             Arm.getInstance().turnSecondTo(m_secondTargetAngle);
         } else {
             Arm.getInstance().turnSecondTo(0);
         }
 
+    }
+
+    @Override
+    public boolean isFinished() {
+
+        double minSecond = Math.abs(m_secondTargetAngle)
+                - Consts.ArmConsts.SECOND_ARM_OPEN_ANGLE_THRESHOLD;
+        double maxSecond = Math.abs(m_secondTargetAngle)
+                + Consts.ArmConsts.SECOND_ARM_OPEN_ANGLE_THRESHOLD;
+
+        double currentSecond = Math.abs(Arm.getInstance().getSecondAngle());
+
+        return currentSecond > minSecond && currentSecond < maxSecond;
     }
 }

@@ -19,7 +19,6 @@ import frc.robot.Subsystems.Claw;
 import frc.robot.Subsystems.Arm.ArmNumber;
 import frc.robot.Commands.Arm.MoveArmByAngle;
 import frc.robot.Commands.Arm.MoveBothArms;
-import frc.robot.Commands.Chassis.driveMeter;
 
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
@@ -42,7 +41,7 @@ public class Robot extends TimedRobot {
 
     SmartDashboard.putNumber("meters", Chassis.getInstance().getMeters());
     SmartDashboard.putNumber("encoder right ", Chassis.getInstance().m_rightForward.getEncoder().getPosition());
-    SmartDashboard.putNumber("encoder left ", Chassis.getInstance().m_leftForward.getEncoder().getPosition());    
+    SmartDashboard.putNumber("encoder left ", Chassis.getInstance().m_leftForward.getEncoder().getPosition());
 
     SmartDashboard.putBoolean("cube", !Claw.getlimitSwitchCubeBool());
     SmartDashboard.putBoolean("cone", !Claw.getlimitSwitchConeBool());
@@ -71,7 +70,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
-    
+
   }
 
   @Override
@@ -92,6 +91,7 @@ public class Robot extends TimedRobot {
 
     RobotContainer.chassisDrive.schedule();
   }
+
   @Override
   public void teleopPeriodic() {
 
